@@ -5,6 +5,8 @@ import AppLoading from 'expo-app-loading';
 import {useFonts} from "expo-font";
 import StartScreen from "./src/screens/StartScreen/startScreen"
 import LoginScreen from "./src/screens/Login/loginScreen"
+import RegisterScreen from "./src/screens/Register/registerScreen"
+import RegisterOrganizationScreen from "./src/screens/RegisterOrganization/registerScreen"
 import { SafeAreaView, Text,StyleSheet, View } from 'react-native';
 
 const App = () => {
@@ -46,7 +48,7 @@ const App = () => {
     const status ="2";
     if (!fontsLoaded) {
         return <AppLoading />;
-    } return <LoginScreen />
+    } return <RegisterScreen />
   
        
 
