@@ -83,10 +83,10 @@ const registerScreen = memo(() => {
           onFinish={finish}
           onBack={onBack}
           onNext={onNext}
-          comeInOnNext="bounceInLeft"
-          OutOnNext="bounceOutRight"
-          comeInOnBack="bounceInRight"
-          OutOnBack="bounceOutLeft"
+          comeInOnNext="bounceInRight"
+          OutOnNext="bounceOutLeft"
+          comeInOnBack="bounceInLeft"
+          OutOnBack="bounceOutRight"
           
         />
       </View>
