@@ -1,26 +1,54 @@
-import React, {memo, useCallback, useRef} from 'react';
+import React, {memo, useCallback, useRef,useState} from 'react';
 import {
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  SafeAreaView,Image, TextInput, Button, KeyboardAvoidingView
+  SafeAreaView,Image, TextInput, Button, KeyboardAvoidingView, Alert
 } from 'react-native';
 import {height_screen, width_screen} from 'ultis/dimensions';
-
+import {useNavigation} from '@react-navigation/native';
+import ROUTES from 'ultis/routes';
 
 
 
 
 const loginScreen = memo(() => {
 
+  const[username,setUsername]=useState();
+  const[password,setPassword]=useState();
+  const {navigate} = useNavigation();
+
+  const Signup = useCallback(() => {
+    navigate(ROUTES.Register);
+  }, [navigate]);
+
+
   
-  const Login = () => {
-    console.log("go to register page")
+  const Login = async() => {
+    console.log(username + " " + password)
+    if(username!="" && password!=""){
+      await fetch('https://dont-be-quiet.herokuapp.com/activist/login',{
+        method:'POST',
+        headers:{
+          'Accept': 'applicattion/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          "username" : username,
+          "password": password
+
+        })
+
+
+      }).then(res=>res.json())
+      .then(resData=>{
+        
+        navigate(ROUTES.Register);
+      })
+    }
   };
-  const Signup = () => {
-    console.log("go to register page")
-  };
+  
 
   return (
     
@@ -46,11 +74,17 @@ const loginScreen = memo(() => {
         <TextInput
         autoFocus={true}
         style={styles.input}
-        placeholder="Email"/>
+        placeholder="Username"
+        value={username}
+        onChangeText={(anything)=>setUsername(anything)}
+        />
         
         <TextInput
         style={styles.input}
-        placeholder="Password"/>
+        placeholder="Password"
+        value={password}
+        onChangeText={(pass)=>setPassword(pass)}
+        />
       
         </View>
        
@@ -58,11 +92,12 @@ const loginScreen = memo(() => {
         
         
         <View style={styles.title3}>
-        <TouchableOpacity style={{backgroundColor:"black",borderRadius:100,width:width_screen - 100,height:50,justifyContent:"center"}}><Text style={{color:"#6BB981",fontSize:22,textAlign:"center"}}>Login</Text></TouchableOpacity>
+        <TouchableOpacity onPress={Login} style={{backgroundColor:"black",borderRadius:100,width:width_screen - 100,height:50,justifyContent:"center"}}><Text style={{color:"#6BB981",fontSize:22,textAlign:"center"}}>Login</Text></TouchableOpacity>
        
         <Button
   title="Don't haven an account yet? Sign up"
   color="black"
+  onPress={Signup}
 />
         </View>
       

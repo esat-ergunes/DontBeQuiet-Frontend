@@ -8,6 +8,7 @@ import LoginScreen from "./src/screens/Login/loginScreen"
 import RegisterScreen from "./src/screens/Register/registerScreen"
 import RegisterOrganizationScreen from "./src/screens/RegisterOrganization/registerScreen"
 import { SafeAreaView, Text,StyleSheet, View } from 'react-native';
+import Main from 'nav/Main';
 
 const App = () => {
     let [fontsLoaded] = useFonts({
@@ -48,7 +49,7 @@ const App = () => {
     const status ="2";
     if (!fontsLoaded) {
         return <AppLoading />;
-    } return <RegisterScreen />
+    } return <Main />
   
        
 

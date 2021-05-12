@@ -12,19 +12,23 @@ import {height_screen, width_screen} from 'ultis/dimensions';
 import FONTS from 'ultis/fonts';
 import {getBottomSpace} from 'react-native-iphone-x-helper';
 import {useNavigation} from '@react-navigation/native';
+import ROUTES from 'ultis/routes';
 
 import { Video, AVPlaybackStatus } from "expo-av";
 
 const startScreen = memo(() => {
   const video = React.useRef(null);
   const scrollX = useRef(new Animated.Value(0)).current;
-  
-  const GoRegister = () => {
-    console.log("go to register page")
-  };
-  const GoLogin = () => {
-    console.log("go to Login page")
-  };
+  const {navigate} = useNavigation();
+
+  const GoRegister = useCallback(() => {
+    navigate(ROUTES.Register);
+  }, [navigate]);
+
+
+ const GoLogin = useCallback(() => {
+    navigate(ROUTES.Login);
+  }, [navigate]);
 
   return (
     <SafeAreaView
