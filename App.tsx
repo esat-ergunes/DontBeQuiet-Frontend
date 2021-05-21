@@ -1,6 +1,6 @@
 import React from 'react';
 import 'react-native-gesture-handler';
-
+import * as SecureStore from 'expo-secure-store';
 import AppLoading from 'expo-app-loading';
 import {useFonts} from "expo-font";
 import StartScreen from "./src/screens/StartScreen/startScreen"
@@ -63,4 +63,3 @@ container:{
 }
 })
 export default App
-
