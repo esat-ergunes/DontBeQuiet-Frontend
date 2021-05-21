@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 import {height_screen, width_screen} from 'ultis/dimensions';
 import AnimatedMultistep from "react-native-animated-multistep";
-
+import {useNavigation} from '@react-navigation/native';
+import ROUTES from 'ultis/routes';
 
 /* Define the steps  */
  
@@ -20,7 +21,7 @@ import Step5 from "./Components/Steps/step5";
 import Step6 from "./Components/Steps/step4";
 import Step7 from "./Components/Steps/step7";
 /*import Step4 from "./steps/step4";*/
- 
+
 const allSteps = [
   { name: "step 1", component: Step1 },
   { name: "step 2", component: Step2 },
@@ -32,6 +33,7 @@ const allSteps = [
   /*{ name: "step 3", component: Step3 },
   { name: "step 4", component: Step4 }*/
 ];
+
 
 
 const registerScreen = memo(() => {
@@ -47,9 +49,33 @@ const registerScreen = memo(() => {
  
   /* define the method to be called when the wizard is finished */
  
-  const finish = finalState => {
-    console.log(finalState);
-    
+  const finish = async(finalState) => {
+    const {navigate} = useNavigation();
+    console.log(finalState.birthday);
+    await fetch('https://dont-be-quiet.herokuapp.com/activist/signup',{
+        method:'POST',
+        headers:{
+          'Accept': 'applicattion/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          "username" : finalState.username,
+          "password": finalState.password,
+          "email": finalState.email
+
+        })
+      }).then(res=>res.json())
+      .then(async resData=>{
+        
+        if(resData.status != "failed"){
+          navigate(ROUTES.MainBottomTab); 
+        }else{
+        
+        }
+
+        
+      })
+
   };
   
   const Login = () => {
@@ -143,3 +169,5 @@ const styles = StyleSheet.create({
           },
 });
 export default registerScreen;
+
+
