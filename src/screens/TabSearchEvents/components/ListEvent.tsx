@@ -9,31 +9,19 @@ import FONTS from '../../../ultis/fonts';
 
 const data = [
   {
-    thumbnail: require('../../../assets/SearchEvents/Party.png'),
-    tag: ['#party'],
+    thumbnail: require('../../../assets/SearchEvents/BlackLivesMatter.jpg'),
+    tag: ['#No racismo, #equality '],
     reviewTimes: 1.3,
-    eventName: 'Night Party at The W Living Room',
-    location: '3 South Sherman Street Astoria…',
+    eventName: 'Black lives matter',
+    location: '1000 Bruxelles',
     distance: 10,
     currentAttending: 19,
     maxAttending: 5,
     save: false,
-    rate: 4.5,
+    
     marginLeft: 24,
   },
-  {
-    thumbnail: require('../../../assets/SearchEvents/MSG.png'),
-    tag: ['#party'],
-    reviewTimes: 1.3,
-    eventName: 'Night Party at The W Living Room',
-    location: '3 South Sherman Street Astoria…',
-    distance: 10,
-    currentAttending: 19,
-    maxAttending: 5,
-    save: false,
-    rate: 4.5,
-    marginLeft: 24,
-  },
+  
 ];
 
 interface Props {
@@ -78,7 +66,7 @@ const ListEvent = memo((props: Props) => {
   const renderHeader = useCallback(
     () => (
       <Text style={styles.txtHeader}>
-        245 results for “{props.textSearch}” in New York
+        1 results for “{props.textSearch}”
       </Text>
     ),
     [props.textSearch],

@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useRef} from 'react';
+import React, {memo, useCallback, useRef,useState,useContext} from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,6 +10,8 @@ import {height_screen, width_screen} from 'ultis/dimensions';
 import AnimatedMultistep from "react-native-animated-multistep";
 import {useNavigation} from '@react-navigation/native';
 import ROUTES from 'ultis/routes';
+import {Context as AuthContext} from '../../context/AuthContext';
+
 
 /* Define the steps  */
  
@@ -37,19 +39,22 @@ const allSteps = [
 
 
 const registerScreen = memo(() => {
+ 
+  const {state,signup} = useContext(AuthContext);
   const onNext = () => {
     console.log("Next");
   };
+  console.log(state.errorMessage);
  
   /* define the method to be called when you go on back step */
  
   const onBack = () => {
     console.log("Back");
   };
- 
+
   /* define the method to be called when the wizard is finished */
- 
-  const finish = async(finalState) => {
+ /*
+ const finish = async(finalState) => {
     const {navigate} = useNavigation();
     console.log(finalState.birthday);
     await fetch('https://dont-be-quiet.herokuapp.com/activist/signup',{
@@ -77,6 +82,7 @@ const registerScreen = memo(() => {
       })
 
   };
+  */
   
   const Login = () => {
     console.log("go to register page")
@@ -86,7 +92,7 @@ const registerScreen = memo(() => {
   };
 
   return (
-    <KeyboardAvoidingView style={{flex:1}} behavior="padding">
+    
     <SafeAreaView
         style={{
           flex: 1,
@@ -106,7 +112,8 @@ const registerScreen = memo(() => {
        <View style={{flex:1,marginHorizontal:40}}>
         <AnimatedMultistep
           steps={allSteps}
-          onFinish={finish}
+          onFinish={(finalState)=>signup({email:finalState.email,password:finalState.password,username:finalState.username})}
+          //onFinish={()=> signup({finalState.use})}
           onBack={onBack}
           onNext={onNext}
           comeInOnNext="bounceInRight"
@@ -115,12 +122,13 @@ const registerScreen = memo(() => {
           OutOnBack="bounceOutRight"
           
         />
+      {state.errorMessage ? <Text style={{color:"red",fontSize:18}}>{state.errorMessage}</Text> : null}
       </View>
         </View>
         
        
     </SafeAreaView>
-    </KeyboardAvoidingView>
+   
   );
 });
 

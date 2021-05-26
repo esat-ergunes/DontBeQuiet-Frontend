@@ -60,7 +60,7 @@ const EventAroundYou = memo(() => {
         
         <EventItem
           thumbnail={require('@assets/EventAroundU/Youth.png')}
-          tag={['#noracismo', '#Reduced_Inequalities']}
+          tag={['#Climate', '#nature','#sustainability']}
           reviewTimes={1.3}
           eventName={'Youth for Climate'}
           location={'Rue de la Loi, Brussels...'}
@@ -75,33 +75,33 @@ const EventAroundYou = memo(() => {
         
         <EventItem
           thumbnail={require('@assets/EventAroundU/image_Y.jpg')}
-          tag={['#noracismo', '#convention']}
+          tag={['#noracismo']}
           reviewTimes={2.4}
           description={description[1]}
           eventName={'Bottled Art" Wine Painting Nigh'}
-          location={'The Grand Connaught Rooms...'}
+          location={'9000 Gent'}
           distance={3.5}
           currentAttending={2568}
           maxAttending={10000}
           save={true}
           
-          timeCountDown={'7 Days 06 Hours 27 Mins 44 secs'}
+          timeCountDown={''}
           price={0}
         />
         
         <EventItem
           thumbnail={require('@assets/EventAroundU/BlackLivesMatter.jpg')}
-          tag={['#Fashion', '#Convention']}
+          tag={['#noracismo', '#convention']}
           reviewTimes={2.4}
-          eventName={'Mahogany Bridal Fair 2016'}
-          location={'The Grand Connaught Rooms...'}
+          eventName={'Black Lives Matter'}
+          location={'1000 Brussel'}
           description={description[2]}
           distance={3.5}
           currentAttending={10000}
           maxAttending={10000}
           save={false}
           
-          timeCountDown={'7 Days 06 Hours 27 Mins 44 secs'}
+          timeCountDown={''}
           price={120}
         />
       </ScrollView>

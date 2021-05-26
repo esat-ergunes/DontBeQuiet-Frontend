@@ -65,7 +65,6 @@ const loginScreen = memo(() => {
       })
     }
   };
-  
 
   return (
     
@@ -124,7 +123,7 @@ const loginScreen = memo(() => {
         
         <View style={styles.title3}>
           {loading ? 
-            <TouchableOpacity onPress={Login} style={{backgroundColor:"black",borderRadius:100,width:width_screen - 100,height:50,justifyContent:"center"}}><ActivityIndicator size="small" color="#6BB981" /></TouchableOpacity> :<TouchableOpacity onPress={Login} style={{backgroundColor:"black",borderRadius:100,width:width_screen - 100,height:50,justifyContent:"center"}}><Text style={{color:"#6BB981",fontSize:22,textAlign:"center"}}>Login</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{}} style={{backgroundColor:"black",borderRadius:100,width:width_screen - 100,height:50,justifyContent:"center"}}><ActivityIndicator size="small" color="#6BB981" /></TouchableOpacity> :<TouchableOpacity onPress={Login} style={{backgroundColor:"black",borderRadius:100,width:width_screen - 100,height:50,justifyContent:"center"}}><Text style={{color:"#6BB981",fontSize:22,textAlign:"center"}}>Login</Text></TouchableOpacity>
           }
          
        

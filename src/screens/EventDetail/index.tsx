@@ -1,5 +1,6 @@
 import React, {memo, useCallback, useRef, useState} from 'react';
 import {
+  Alert,
   Animated,
   Image,
   ScrollView,
@@ -43,6 +44,7 @@ const EventDetail = memo(() => {
   const [isSaved, setSaved] = useState(data.save);
   let textBuyButton = '';
   let isAvailable;
+  let isAdded='false';
   if (data.currentAttending < data.maxAttending) {
     isAvailable = true;
     if (data.price && data.price > 0) {
@@ -54,17 +56,42 @@ const EventDetail = memo(() => {
     textBuyButton = 'The list is full. Please select other time';
     isAvailable = false;
   }
+
+ 
   const onSaved = useCallback(() => {
     setSaved(!isSaved);
   }, [isSaved]);
   const onBack = useCallback(() => {
     navigation.goBack();
   }, []);
+
+
+  const addedtocalendar = useCallback(() => {
+    textBuyButton = 'Added';
+    navigation.navigate(ROUTES.EventAroundYou);
+  }, []);
   const onBuy = useCallback(() => {
-    navigation.navigate(ROUTES.TicketDetail);
+    isAdded='true';
+        Alert.alert(
+    "Event successfully added to calendar",
+    "",
+    [
+      { text: "OK", onPress: () => navigation.navigate(ROUTES.TabSearchEvents)}
+    ]
+  );
+   
   }, []);
   const onDirection = useCallback(() => {
     navigation.navigate(ROUTES.EventDetailMap);
+  }, []);
+  const gotoFeed = useCallback(() => {
+    if (isAdded) {
+      console.log('okayman')
+        textBuyButton = 'ADDED';
+        navigation.navigate(ROUTES.EventDetailMap);
+    }
+
+
   }, []);
  
 
@@ -143,8 +170,8 @@ const EventDetail = memo(() => {
             ENDORSE
           </Text>
           <UserItem
-            image={require('@assets/Followers/img.jpg')}
-            name={'Clarence Rodgers'}
+            image={require('@assets/Followers/Youth.jpg')}
+            name={'Youth For Climate'}
             numberFollower={'535'}
           />
         </View>
@@ -167,7 +194,7 @@ const EventDetail = memo(() => {
           <Text style={styles.textTitle}>CONTACT</Text>
           <Text style={styles.aboutContent}>
             Send us an email at{' '}
-            <Text style={styles.textBtn}>help@BiteBack.com</Text> or call us at{' '}
+            <Text style={styles.textBtn}>help@YouthForClimate.com</Text> or call us at{' '}
             {'\n'}
             <Text style={styles.textBtn} numberOfLines={1}>
               +1 991-682-0200
@@ -184,7 +211,7 @@ const EventDetail = memo(() => {
             />
           ) : (
             <View style={styles.buttonSoldOut}>
-              <Text style={styles.textSoldOut}>{textBuyButton}</Text>
+            <Text style={styles.textSoldOut}>{textBuyButton}</Text>
             </View>
           )}
         </View>

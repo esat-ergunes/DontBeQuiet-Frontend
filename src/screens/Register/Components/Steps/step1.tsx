@@ -59,6 +59,8 @@ class step1 extends Component {
           placeholder={"First Name"}
           placeholderTextColor="black"
           autoFocus={true}
+          autoCapitalize="none"
+          autoCorrect={false}
         />
         <TextInput
           style={styles.input}
@@ -66,6 +68,8 @@ class step1 extends Component {
           value={this.state.lastname}
           placeholder={"Last Name"}
           placeholderTextColor="black"
+          autoCapitalize="none"
+          autoCorrect={false}
         />
         <View style={{paddingVertical:20}}>
         <Text>

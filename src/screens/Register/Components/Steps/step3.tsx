@@ -51,6 +51,8 @@ export class step3 extends Component {
           placeholder={"Username"}
           placeholderTextColor="black"
           autoFocus={true}
+          autoCapitalize="none"
+          autoCorrect={false}
         />
 
       <View style={[styles.container]}>

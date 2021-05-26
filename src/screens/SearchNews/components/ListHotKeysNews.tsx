@@ -2,7 +2,7 @@ import React, {memo, useCallback} from 'react';
 import {TouchableOpacity, Text, StyleSheet, FlatList} from 'react-native';
 import FONTS from 'ultis/fonts';
 import keyExtractor from 'ultis/keyExtractor';
-const data = ['oscar', 'new york fashion show', 'night party', 'lux bar party'];
+const data = ['No racismo', 'klimaat', 'humanrights'];
 const ListHotKeysNews = memo(() => {
   const renderItem = useCallback(({item}) => {
     return (

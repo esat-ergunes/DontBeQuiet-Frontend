@@ -53,6 +53,8 @@ export class step6 extends Component {
           placeholder={"password"}
           placeholderTextColor="black"
           autoFocus={true}
+          autoCapitalize="none"
+          autoCorrect={false}
         />
 
       <View style={[styles.container]}>

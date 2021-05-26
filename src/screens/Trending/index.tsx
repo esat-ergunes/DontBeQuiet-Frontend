@@ -13,11 +13,11 @@ const description = ["Youth for Climate will travel through the Rue de la Loi in
 
 const data = [
   {
-    thumbnail: require('@assets/EventAroundU/BlackLivesMatter.jpg'),
-    tag: ['#culture'],
+    thumbnail: require('@assets/Trending/1.png'),
+    tag: ['#dieren #dierenrecheten #natuur'],
     reviewTimes: 1.2,
-    eventName: 'Sculpture Without Sight Experience',
-    location: '102 Thatcher Court Yonkers…',
+    eventName: 'Europe close dolphinaria',
+    location: '1000 Brussel',
     distance: 4,
     currentAttending: 19,
     maxAttending: 5000,
@@ -26,11 +26,11 @@ const data = [
     
   },
   {
-    thumbnail: require('@assets/Trending/Youth.png'),
-    tag: ['#fashion'],
+    thumbnail: require('@assets/Trending/5.png'),
+    tag: ['#gelijkheid #dierenrecheten #mensen'],
     reviewTimes: 2.4,
-    eventName: 'Mahogany Bridal Fair 2018',
-    location: 'The Grand Connaught Rooms…',
+    eventName: 'Equality for all!',
+    location: '9000 Gent',
     distance: 2.5,
     currentAttending: 2568,
     maxAttending: 10000,
@@ -39,12 +39,12 @@ const data = [
     
   },
   {
-    thumbnail: require('@assets/EventAroundU/image_Y.jpg'),
-    tag: ['#Fashion', '#Convention'],
+    thumbnail: require('@assets/Trending/4.png'),
+    tag: ['#gelijkheid', '#mensenrechten'],
     reviewTimes: 1.2,
-    eventName: 'Mahogany Bridal Fair 2016',
-    location: 'The Grand Connaught Rooms…',
-    distance: 3.5,
+    eventName: 'Weet wie je eet!!',
+    location: '100 Brussel',
+    distance: 4,
     currentAttending: 2568,
     maxAttending: 5000,
     save: false,

@@ -16,7 +16,7 @@ const PeopleTab = memo(() => {
           backgroundColor: '#61c13c',
         },
       }}>
-      <Tab.Screen name={ROUTES.ForYou} component={ForYou} />
+      <Tab.Screen name={"Followed"} component={ForYou} />
       <Tab.Screen name={ROUTES.Explorer} component={Explorer} />
     </Tab.Navigator>
   );

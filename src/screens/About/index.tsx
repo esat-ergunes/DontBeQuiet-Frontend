@@ -6,12 +6,12 @@ const item = {
   coverImage: require('assets/Profile/CoverImage.png'),
   avatar: require('assets/Profile/Avatar.png'),
   userName: 'Hieu Le',
-  address: 'Washington, DC',
+  address: 'Brussel, BE',
   followers: '1.5M',
-  following: 25,
+  following: 3,
   numberMessage: 2,
   reward: 15,
-  interested: ['#art', ' #festival', ' #fashion'],
+  interested: ['#noracismo', ' #Climate', ' #nature',' #sustainability'],
   notification: 1,
 };
 

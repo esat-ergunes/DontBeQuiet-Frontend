@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import FONTS from 'ultis/fonts';
 import IconArrowDown from 'svgs/IconArrowDown';
+import Back from 'svgs/svgBackButton';
 import ItemTag from 'screens/Filter/components/ItemTag';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import {width_screen} from 'ultis/dimensions';
@@ -40,6 +41,10 @@ const Filter = memo(() => {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={{marginLeft:20,marginTop:30}} onPress={()=>navigation.navigate(ROUTES.EventAroundYou)}>
+    
+      <Text>Back</Text>
+      </TouchableOpacity>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
         <View style={styles.optionHeader}>
           <Text style={styles.textOptionHeader}>When</Text>
@@ -88,13 +93,7 @@ const Filter = memo(() => {
           onValuesChange={onValuesDistanceChange}
         />
         <View style={styles.checkFree}>
-          <CheckBox
-            onPress={onPressCheck}
-            isCheck={isFree}
-            borderColor={'#7F8FA6'}
-            checkedColor={'#7FFA50'}
-          />
-          <Text style={styles.textChecker}>Only free events</Text>
+          
         </View>
       </ScrollView>
       <View style={styles.buttonView}>
