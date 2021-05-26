@@ -1,27 +1,42 @@
 import React, {memo} from 'react';
 import {StyleSheet, View,Text, SafeAreaView} from 'react-native';
 import HeaderProfile from 'screens/About/components/HeaderProfile';
+import {useNavigation} from '@react-navigation/native';
+import ROUTES from 'ultis/routes';
+import {createStackNavigator} from '@react-navigation/stack';
+import TabEvents from '../AddEvent/Components/Add_Event';
+import TabPost from '../AddEvent/Components/Add_Post'
+
+import {headerBackground} from 'nav/Main';
+import TabAddEvents from 'nav/TabAddEvents';
 
 const item = {
-  coverImage: require('../../assets/Profile/CoverImage.png'),
-  avatar: require('../../assets/Profile/Avatar.png'),
-  userName: 'Hieu Le',
-  address: 'Washington, DC',
-  followers: '1.5M',
-  following: 25,
-  numberMessage: 2,
-  reward: 15,
-  interested: ['#art', '#festival', '#fashion', '#expo...'],
-  notification: 1,
+  
 };
 
+const Stack = createStackNavigator();
+
 const addEvent = memo(() => {
+  const navigation = useNavigation();
   return (
-    <SafeAreaView>
-    <View style={styles.container}>
-      <Text>ADD EVENT</Text>
-    </View>
-    </SafeAreaView>
+   
+    <Stack.Navigator
+      screenOptions={{
+        headerBackground: headerBackground,
+        headerTintColor: '#FFF',
+      }}>
+      <Stack.Screen
+        name={ROUTES.TabProfile}
+        component={TabAddEvents}
+        options={{
+          title: 'Add new',
+          headerLeft: () => {
+            return null;
+          },
+        }}
+      />
+    </Stack.Navigator>
+   
    
   );
 });

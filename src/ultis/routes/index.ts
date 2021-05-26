@@ -1,3 +1,6 @@
+
+
+
 const ROUTES = {
   StartScreen: 'StartScreen',
   Register: 'Register',
@@ -23,6 +26,10 @@ const ROUTES = {
   News: 'News',
   AddEvent: 'AddEvent',
   ForYou: 'For you',
+  Add_Event:"Event",
+  Add_Post:"Post",
+  TabAddEvents:'TabAddEvents',
+
 /*--------------tab4-------------------*/
 TabPeople: 'TabPeople', //tab 4
 StackPeople: 'StackPeople',
@@ -30,7 +37,6 @@ StackPeople: 'StackPeople',
 Explorer: 'Explorer',
 SearchPeople: 'SearchPeople',
 PeopleProfile: 'PeopleProfile',
-Chat: 'Chat',
 TabProfile: 'TabProfile',
 StackProfile: 'StackProfile',
 

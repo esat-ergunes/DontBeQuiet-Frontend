@@ -11,11 +11,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native-gesture-handler';
 const dataUpcoming = [
     {
-      img: require('../../../assets/EventAroundU/BlackLivesMatter.jpg'),
-      titlePost: '"Bottled Art" Wine Painting\n' + ' Night',
-      timePost: 'SUN, MAR. 25  -  4:30 PM EST',
+      img: require('../../../assets/EventAroundU/Youth.png'),
+      titlePost: 'Youth for climate',
+      timePost: 'FRI, Jun. 25  -  4:30 PM EST',
     },
-    {
+    /*{
       img: require('../../../assets/EventAroundU/Youth.png'),
       titlePost: 'Win 2 tickets to WWE @ MSG',
       timePost: 'SUN, MAR. 25  -  4:30 PM EST',
@@ -25,7 +25,7 @@ const dataUpcoming = [
       titlePost: '"Bottled Art" Wine Painting\n' + ' Night',
       timePost: 'SUN, MAR. 30  -  4:30 PM EST',
     },
-    
+    */
     
   ];
 

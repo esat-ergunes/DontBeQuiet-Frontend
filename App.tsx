@@ -10,6 +10,8 @@ import RegisterOrganizationScreen from "./src/screens/RegisterOrganization/regis
 import { SafeAreaView, Text,StyleSheet, View } from 'react-native';
 import Main from 'nav/Main';
 
+import { Provider as AuthProvider }  from './src/context/AuthContext'
+
 const App = () => {
     let [fontsLoaded] = useFonts({
         'DINCondensed-Bold': require('./assets/fonts/DINCondensed-Bold.ttf'),
@@ -62,4 +64,15 @@ container:{
     justifyContent:"center"
 }
 })
-export default App
+
+
+//export default App
+
+const MainApp =  App;
+
+export default()=>{
+    return(
+    <AuthProvider>
+        <MainApp/>
+    </AuthProvider>)
+}

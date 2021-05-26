@@ -50,6 +50,8 @@ const styles = StyleSheet.create({
   },
   image: {
     marginHorizontal: 0.04 * width_screen,
+    height:60,
+    width:60
   },
   txtName: {
     fontFamily: FONTS.Medium,

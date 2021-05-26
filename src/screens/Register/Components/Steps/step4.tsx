@@ -51,6 +51,8 @@ export class step4 extends Component {
           placeholder={"interests"}
           placeholderTextColor="black"
           autoFocus={true}
+          autoCapitalize="none"
+          autoCorrect={false}
         />
 
       <View style={[styles.container]}>

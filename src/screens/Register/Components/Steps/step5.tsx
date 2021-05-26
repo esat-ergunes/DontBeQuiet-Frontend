@@ -51,6 +51,8 @@ export class step5 extends Component {
           placeholder={"email"}
           placeholderTextColor="black"
           autoFocus={true}
+          autoCapitalize="none"
+          autoCorrect={false}
         />
 
       <View style={[styles.container]}>

@@ -48,9 +48,12 @@ export class step2 extends Component {
                               <TextInput
                                 style={styles.input}
                                 onChangeText={birthday => this.setState({ birthday })}
-                                value=""
+                                value={this.state.birthday}
                                 placeholder={"birthday"}
                                 placeholderTextColor="#fff"
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                
                                 
                             />
 
@@ -60,7 +63,7 @@ export class step2 extends Component {
             <Text style={{color:"#70B62E",textAlign:"center",fontSize:19}}>Continue</Text>
           </TouchableOpacity>
         </View>
-        <CustomDatePicker />
+        
       </View>
       </>
     );

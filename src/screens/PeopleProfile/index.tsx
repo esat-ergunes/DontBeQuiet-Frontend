@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import {Animated, StyleSheet, View} from 'react-native';
+import {Animated, Image, StyleSheet, View} from 'react-native';
 import ThemeUtils from 'ultis/themeUtils';
 import Color from 'ultis/color';
 import ActivityItem from 'screens/ProfileActivity/components/ActivityItem';
@@ -8,20 +8,91 @@ import data from 'screens/PeopleProfile/datas';
 import HeaderPeopleProfile from 'screens/PeopleProfile/components/HeaderPeopleProfile';
 import Header from 'screens/PeopleProfile/components/Header';
 import SvgChatOption from '../../svgs/PeopleProfile/SvgChatOption';
-import { Text } from 'react-native';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { Text,FlatList, ScrollView, TouchableOpacity  } from 'react-native';
+import keyExtractor from '../../ultis/keyExtractor';
 
 const item = {
-  coverImage: require('../../assets/PeopleProfile/img.png'),
-  avatar: require('../../assets/PeopleProfile/Charlotte.png'),
-  userName: 'Charlotte Gregory',
-  address: 'Manhattan, NY',
-  followers: '1.5M',
-  following: 5,
-  interested: ['#art', '#festival', '#fashion'],
+  coverImage: require('../../assets/Followers/BiteCover.png'),
+  avatar: require('../../assets/Followers/Bite.png'),
+  userName: 'Bite Back',
+  address: 'Bredestraat 134, 3293 Diest',
+  following: '1279',
+  followers: '1279',
+  interested: ['#dieren', '#dierenrechten ', '#natuur'],
 };
 
+const DATA = [
+  {
+    id:'1',
+    img:  require('../../assets/Instapost/1.png'),
+   
+  },
+  {
+    id:'2',
+    img:  require('../../assets/Instapost/2.png'),
+   
+  },
+  {
+    id:'3',
+    img:  require('../../assets/Instapost/3.png'),
+   
+  },
+  {
+    id:'4',
+    img:  require('../../assets/Instapost/4.png'),
+   
+  },
+  {
+    id:'5',
+    img:  require('../../assets/Instapost/5.png'),
+   
+  },
+  {
+    id:'6',
+    img:  require('../../assets/Instapost/6.png'),
+   
+  },
+  {
+    id:'7',
+    img:  require('../../assets/Instapost/7.png'),
+   
+  },
+  {
+    id:'8',
+    img:  require('../../assets/Instapost/8.png'),
+   
+  },
+  {
+    id:'9',
+    img:  require('../../assets/Instapost/9.png'),
+   
+  },
+  {
+    id:'10',
+    img:  require('../../assets/Instapost/10.png'),
+   
+  }
+  
+];
+
+const Item = ({ img }) => (
+  <View style={{marginTop:8}}>
+    <Image 
+    style={{width:100,height:100, marginHorizontal:5}}
+     source={img}
+    
+    />
+  </View>
+);
+
+
 const PeopleProfile = memo(() => {
+  const renderItem = ({ item }) => (
+    <Item img={item.img} />
+  );
+
+  const numColumns = 3;
+
   const scrollY = new Animated.Value(0);
 
   return (
@@ -54,59 +125,30 @@ const PeopleProfile = memo(() => {
           interested={item.interested}
         />
        
-          <ScrollView style={{height:500}}
+          <ScrollView style={{height:320}}
           
-          showsVerticalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}>
+           
+          <View style={{marginTop:12, display:"flex",alignItems:"center",justifyContent:"space-around"}}>
+          <FlatList
+       showsVerticalScrollIndicator={false}
+       data={DATA}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        numColumns={numColumns}
+       
+       />
 
-          >
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
-          <Text>INSTA image</Text>
+
+          </View>
 
         </ScrollView>
         
      
 
-        <View style={{marginVertical:40, display:"flex",alignItems:"center"}}>
-          <TouchableOpacity style={{backgroundColor:"green",paddingHorizontal:100,borderRadius:100,height:50,justifyContent:"center",alignItems:"center"}}>
-            <Text>DONATION</Text>
+        <View style={{marginBottom:20,marginTop:40, display:"flex",alignItems:"center"}}>
+          <TouchableOpacity style={{backgroundColor:"#1D1D1B",paddingHorizontal:100,borderRadius:100,height:50,justifyContent:"center",alignItems:"center"}}>
+            <Text style={{color:"#7FFA50"}}>DONATE</Text>
           </TouchableOpacity>
         </View>
       </Animated.ScrollView>

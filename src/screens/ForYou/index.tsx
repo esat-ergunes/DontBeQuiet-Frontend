@@ -6,45 +6,22 @@ const ForYou = memo(() => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <UserItem
-        image={require('../../assets/Followers/img.jpg')}
-        name={'Jose Lowe'}
-        numberFollower={'179'}
+        image={require('../../assets/Followers/Bite.png')}
+        name={'Bite Back'}
+        numberFollower={'1279'}
       />
       <UserItem
-        image={require('../../assets/Followers/img.jpg')}
-        name={'Hulda James'}
+        image={require('../../assets/Followers/Femma.png')}
+        name={'Femma'}
         numberFollower={'944'}
       />
       <UserItem
-        image={require('../../assets/Followers/img.jpg')}
-        name={'Louisa Lyons'}
+        image={require('../../assets/Followers/rosa_logo.jpg')}
+        name={'Rosa'}
         numberFollower={'641'}
       />
-      <UserItem
-        image={require('../../assets/Followers/img.jpg')}
-        name={'Bessie Mendoza'}
-        numberFollower={'998'}
-      />
-      <UserItem
-        image={require('../../assets/Followers/img.jpg')}
-        name={'Matilda McGuire'}
-        numberFollower={'748'}
-      />
-      <UserItem
-        image={require('../../assets/Followers/img.jpg')}
-        name={'Harriett Coleman'}
-        numberFollower={'245'}
-      />
-      <UserItem
-        image={require('../../assets/Followers/img.jpg')}
-        name={'Matilda McGuire'}
-        numberFollower={'748'}
-      />
-      <UserItem
-        image={require('../../assets/Followers/img.jpg')}
-        name={'Harriett Coleman'}
-        numberFollower={'245'}
-      />
+    
+      
     </ScrollView>
   );
 });

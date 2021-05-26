@@ -41,14 +41,14 @@ const HeaderPeopleProfile = memo((props: Props) => {
         <Text style={styles.address}>{props.address}</Text>
         <View style={styles.btn}>
           <TouchableOpacity style={styles.follow}>
-            <Text style={styles.txtFollow}>FOLLOW</Text>
+            <Text style={styles.txtFollow}>FOLLOWED</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.followStyle}>
           <TouchableOpacity onPress={()=>{}}>
             <Text style={styles.txtNumberFollow}>
               {props.following}
-              <Text style={styles.txtFollower}> following</Text>
+              <Text style={styles.txtFollower}> followers</Text>
             </Text>
           </TouchableOpacity>
         </View>
@@ -59,7 +59,7 @@ const HeaderPeopleProfile = memo((props: Props) => {
           ))}
         </View>
         <TouchableOpacity style={[styles.arrDown]}>
-          <SvgArrDown />
+          
         </TouchableOpacity>
       </View>
       <View style={styles.activity}>
@@ -229,15 +229,17 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFF',
+    backgroundColor: '#7FFA50',
     borderWidth: 1,
-    borderColor: 'green',
+    borderColor: '#7FFA50',
     borderRadius: 100,
+  
   },
   txtFollow: {
     fontFamily: FONTS.Medium,
     fontSize: 12,
-    color: 'green',
+    color: '#1D1D1B',
+    
   },
   activity: {
     width: width_screen,
@@ -245,7 +247,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: 'green',
+    borderBottomColor: '#7ABD51',
   },
   txtActivity: {
     fontFamily: FONTS.Medium,

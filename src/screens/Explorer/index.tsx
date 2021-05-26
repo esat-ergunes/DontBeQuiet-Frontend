@@ -13,18 +13,18 @@ interface Props {
 
 const data = [
   {
-    img: require('../../assets/People/Charlotte.png'),
-    userName: 'Charlotte Gregory',
+    img: require('../../assets/Followers/AnimalRights.png'),
+    userName: 'AnimalRights',
     follower: '860K',
   },
   {
-    img: require('../../assets/People/Lilly.png'),
-    userName: 'Lilly Mullins',
+    img: require('../../assets/Followers/Youth.jpg'),
+    userName: 'Youth',
     follower: '1.5M',
   },
   {
-    img: require('../../assets/People/Jean.png'),
-    userName: 'Jean Grant',
+    img: require('../../assets/Followers/DierenHulp.jpg'),
+    userName: 'DierenHulp',
     follower: '35K',
   },
 ];
@@ -53,7 +53,7 @@ const Explorer = memo((props: Props) => {
   const renderUserItem = useCallback(({item}) => {
     return (
       <UserItem
-        image={require('assets/Followers/img.jpg')}
+        image={item.image}
         name={item.name}
         numberFollower={item.numberFollower}
       />
@@ -74,23 +74,23 @@ const Explorer = memo((props: Props) => {
 });
 const dataUser = [
   {
-    image: require('assets/Followers/img.jpg'),
-    name: 'Ellen Rice',
+    image: require('assets/Followers/kifkif.jpg'),
+    name: 'KifKif',
     numberFollower: '34K',
   },
   {
-    image: require('assets/Followers/img.jpg'),
-    name: 'Jennie Watson',
+    image: require('assets/Followers/Viva.jpg'),
+    name: 'Viva',
     numberFollower: '32K',
   },
   {
-    image: require('assets/Followers/img.jpg'),
-    name: 'Linnie Jennings',
+    image: require('assets/Followers/eva.png'),
+    name: 'Eva',
     numberFollower: '22K',
   },
   {
-    image: require('assets/Followers/img.jpg'),
-    name: 'Jennie Watson',
+    image: require('assets/Followers/Wervel.png'),
+    name: 'Wervel',
     numberFollower: '32K',
   },
 ];

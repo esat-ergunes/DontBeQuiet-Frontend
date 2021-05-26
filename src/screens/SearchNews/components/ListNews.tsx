@@ -6,8 +6,8 @@ import FONTS from 'ultis/fonts';
 
 const data = [
   {
-    imgEvent: require('assets/SearchNews/Envy.png'),
-    event: 'Envy apple makes\n' + ' New York Fashion\n' + ' Week debut',
+    imgEvent: require('assets/SearchNews/BlackLivesMatter.png'),
+    event: 'Black\n' + ' Lives\n' + ' Matter',
     time: 'MAR. 10, 2018',
   },
   {
@@ -42,7 +42,7 @@ const ListNews = memo((props: Props) => {
   const renderHeader = useCallback(
     () => (
       <Text style={styles.txtHeader}>
-        20 results for “{props.textSearch}” in New York
+        1 results for “{props.textSearch}
       </Text>
     ),
     [props.textSearch],
