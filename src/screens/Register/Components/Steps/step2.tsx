@@ -53,6 +53,7 @@ export class step2 extends Component {
                                 placeholderTextColor="#fff"
                                 autoCapitalize="none"
                                 autoCorrect={false}
+                                autoFocus={true}
                                 
                                 
                             />

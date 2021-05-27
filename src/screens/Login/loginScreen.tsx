@@ -53,6 +53,8 @@ const loginScreen = memo(() => {
         if(resData.status != "user failed"){
           setIsErrorMessage(false);
           setLoading(false)
+          console.log(resData.data)
+         await AsyncStorage.setItem('token',resData.data.token);
           navigate(ROUTES.MainBottomTab); 
         }else{
         setIsErrorMessage(true);
@@ -75,7 +77,7 @@ const loginScreen = memo(() => {
           justifyContent: "flex-end",
         }}>
           
-          <KeyboardAvoidingView style={{flex:1}} behavior="padding">
+         
         <View style={styles.images}>
         <Image
             style={styles.tinyLogo}
@@ -127,15 +129,12 @@ const loginScreen = memo(() => {
           }
          
        
-        <Button
-  title="Don't haven an account yet? Sign up"
-  color="black"
-  onPress={Signup}
-/>
+        
+<TouchableOpacity onPress={Signup} style={{marginVertical:20}}><Text>Don't haven an account yet? Sign up</Text></TouchableOpacity>
         </View>
       
         </View>
-        </KeyboardAvoidingView>
+       
         
     </SafeAreaView>
   );

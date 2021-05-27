@@ -15,17 +15,7 @@ const dataUpcoming = [
       titlePost: 'Youth for climate',
       timePost: 'FRI, Jun. 25  -  4:30 PM EST',
     },
-    /*{
-      img: require('../../../assets/EventAroundU/Youth.png'),
-      titlePost: 'Win 2 tickets to WWE @ MSG',
-      timePost: 'SUN, MAR. 25  -  4:30 PM EST',
-    },
-    {
-      img: require('../../../assets/ProfileActivity/MSG.png'),
-      titlePost: '"Bottled Art" Wine Painting\n' + ' Night',
-      timePost: 'SUN, MAR. 30  -  4:30 PM EST',
-    },
-    */
+    
     
   ];
 
@@ -33,17 +23,17 @@ const dataUpcoming = [
   const dataPast = [
     {
       img: require('../../../assets/ProfileActivity/WWE.png'),
-      titlePost: '"Bottled Art" Wine Painting\n' + ' Night',
+      titlePost: '',
       timePost: 'SUN, MAR. 25  -  4:30 PM EST',
     },
     {
       img: require('../../../assets/ProfileActivity/AMC.png'),
-      titlePost: 'Win 2 tickets to WWE @ MSG',
+      titlePost: '',
       timePost: 'SUN, MAR. 25  -  4:30 PM EST',
     },
     {
       img: require('../../../assets/ProfileActivity/BottledArt.png'),
-      titlePost: '"Bottled Art" Wine Painting\n' + ' Night',
+      titlePost: '',
       timePost: 'SUN, MAR. 30  -  4:30 PM EST',
     },
     

@@ -6,42 +6,42 @@ import TicketItem from 'screens/ProfileTickets/components/TicketItem';
 const data = [
   {
     img: require('../../assets/ProfileActivity/BottledArt.png'),
-    titlePost: '"Bottled Art" Wine Painting\n' + ' Night',
+    titlePost: 'test',
     timePost: 'SUN, MAR. 25  -  4:30 PM EST',
   },
   {
     img: require('../../assets/ProfileActivity/WWE.png'),
-    titlePost: 'Win 2 tickets to WWE @ MSG',
+    titlePost: 'test',
     timePost: 'SUN, MAR. 25  -  4:30 PM EST',
   },
   {
     img: require('../../assets/ProfileActivity/MSG.png'),
-    titlePost: '"Bottled Art" Wine Painting\n' + ' Night',
+    titlePost: 'test',
     timePost: 'SUN, MAR. 30  -  4:30 PM EST',
   },
   {
     img: require('../../assets/ProfileActivity/AMC.png'),
-    titlePost: 'AMC Black Ticket',
+    titlePost: 'test',
     timePost: 'SUN, MAR. 28  -  4:30 PM EST',
   },
   {
     img: require('../../assets/ProfileActivity/BottledArt.png'),
-    titlePost: '"Bottled Art" Wine Painting\n' + ' Night',
+    titlePost: 'test',
     timePost: 'SUN, MAR. 25  -  4:30 PM EST',
   },
   {
     img: require('../../assets/ProfileActivity/WWE.png'),
-    titlePost: 'Win 2 tickets to WWE @\n' + ' MSG',
+    titlePost: 'test',
     timePost: 'SUN, MAR. 25  -  4:30 PM EST',
   },
   {
     img: require('../../assets/ProfileActivity/MSG.png'),
-    titlePost: '"Bottled Art" Wine Painting\n' + ' Night',
+    titlePost: 'test',
     timePost: 'SUN, MAR. 30  -  4:30 PM EST',
   },
   {
     img: require('../../assets/ProfileActivity/AMC.png'),
-    titlePost: 'AMC Black Ticket',
+    titlePost: 'testeeeeee',
     timePost: 'SUN, MAR. 28  -  4:30 PM EST',
   },
 ];

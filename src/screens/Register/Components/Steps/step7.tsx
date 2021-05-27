@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, View, TouchableOpacity, TextInput, Text,StyleSheet,ImageBackground, Alert } from "react-native";
+import { Image, View, TouchableOpacity, TextInput, Text,StyleSheet,ImageBackground } from "react-native";
 import CustomDatePicker from '../datePicker'
 import { Ionicons } from '@expo/vector-icons';
 
