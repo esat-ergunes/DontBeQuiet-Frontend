@@ -4,7 +4,7 @@ import {
   Text,
   TouchableOpacity,
   View,
-  SafeAreaView,Image, TextInput, Button, KeyboardAvoidingView
+  SafeAreaView,Image, TextInput, Button, KeyboardAvoidingView, ActivityIndicator
 } from 'react-native';
 import {height_screen, width_screen} from 'ultis/dimensions';
 import AnimatedMultistep from "react-native-animated-multistep";
@@ -39,15 +39,13 @@ const allSteps = [
 
 
 const registerScreen = memo(() => {
- 
+  const {navigate} = useNavigation();
   const {state,signup} = useContext(AuthContext);
   const onNext = () => {
     console.log("Next");
   };
-  console.log(state.errorMessage);
- 
   /* define the method to be called when you go on back step */
- 
+  console.log(state)
   const onBack = () => {
     console.log("Back");
   };
@@ -99,6 +97,7 @@ const registerScreen = memo(() => {
           backgroundColor: "#1D1D1B",
           justifyContent: "flex-end",
         }}>
+          {state.dataloaded === " " && state.errorMessage === " "  ?  <ActivityIndicator size="large" color="#6BB981"/>:null }
           <View style={styles.images}>
         <Image
             style={styles.tinyLogo}
@@ -122,8 +121,10 @@ const registerScreen = memo(() => {
           OutOnBack="bounceOutRight"
           
         />
-      {state.errorMessage ? <Text style={{color:"red",fontSize:18}}>{state.errorMessage}</Text> : null}
+      {state.errorMessage ? <Text style={{color:"red", textAlign:"center",marginTop:-20,marginBottom:10}}>{state.errorMessage}</Text> : null}
+      {!state.token ? null  : navigate(ROUTES.Login) }
       </View>
+     
         </View>
         
        

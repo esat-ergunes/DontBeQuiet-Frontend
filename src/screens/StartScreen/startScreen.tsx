@@ -83,7 +83,7 @@ const startScreen = memo(() => {
         <View style={styles.buttonGroup}>
           <TouchableOpacity style={styles.buttonActivist} onPress={GoRegister}>
           
-            <Text style={styles.font}>Let's get start</Text>
+            <Text style={styles.font}>Let's get started</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{marginTop:20}} onPress={GoLogin}>
             <Text style={{fontSize:16, color:"white"}}>Already have an account?</Text>
