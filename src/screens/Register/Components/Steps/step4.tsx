@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Image, View, TouchableOpacity, TextInput, Text,StyleSheet } from "react-native";
 import CustomDatePicker from '../datePicker'
 import { Ionicons } from '@expo/vector-icons';
+import SelectHashTag from '../../../SelectHashtag/index'
 export class step4 extends Component {
   constructor(props) {
     super(props);
@@ -38,25 +39,15 @@ export class step4 extends Component {
           
           
         </View>
-        <View style={{marginVertical:30}}>
+        <View style={{marginVertical:10}}>
           <Text
             style={{textAlign:"center",fontSize:24,marginHorizontal:5}}
           >{`Choose your interests`}</Text></View>
          
-                            
-                            <TextInput
-          style={styles.input}
-          onChangeText={interests => this.setState({ interests })}
-          value={this.state.interests}
-          placeholder={"interests"}
-          placeholderTextColor="black"
-          autoFocus={true}
-          autoCapitalize="none"
-          autoCorrect={false}
-        />
+         <SelectHashTag/> 
 
-      <View style={[styles.container]}>
-       
+      <View style={{marginVertical:10}}>
+     
       
       
         
@@ -90,7 +81,8 @@ const styles = StyleSheet.create({
         btnContainer:{
             display:"flex",
             flexDirection:"row",
-            justifyContent:"space-around"
+            justifyContent:"space-around",
+           
         }
        
 });

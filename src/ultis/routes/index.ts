@@ -6,6 +6,7 @@ const ROUTES = {
   Register: 'Register',
   Login:'Login',
   Filter:'Filter',
+  RegisterOrganization:"RegisterOrganization",
    /*--------------Main Tab-------------------*/
   MainBottomTab: 'MainBottomTab',
    /*--------------tab1-------------------*/

@@ -22,7 +22,7 @@ const startScreen = memo(() => {
   const {navigate} = useNavigation();
 
   const GoRegister = useCallback(() => {
-    navigate(ROUTES.Register);
+    navigate(ROUTES.RegisterOrganization);
   }, [navigate]);
 
 

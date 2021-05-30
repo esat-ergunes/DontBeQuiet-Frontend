@@ -21,7 +21,7 @@ export class step3 extends Component {
 
   nextStep = () => {
     const { next, saveState } = this.props;
-    saveState({ BTW:this.state.vat});
+    saveState({ vat:this.state.vat});
     
     next();
   };

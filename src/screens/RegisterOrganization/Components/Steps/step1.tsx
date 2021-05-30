@@ -22,7 +22,7 @@ class step1 extends Component {
   nextStep = () => {
     const { next, saveState } = this.props;
     // Save state for use in other steps
-    saveState({ name:this.state.firstname, lastname:this.state.lastname});
+    saveState({ name:this.state.name});
  
     // Go to next step
     next();
@@ -50,21 +50,13 @@ class step1 extends Component {
         <View>
         <Text
             style={{textAlign:"center",marginTop:-10,fontSize:24,}}
-          >{`What's your name? `}</Text>
+            >{`What's your organization name `}</Text>
         </View>
         <TextInput
           style={styles.input}
-          onChangeText={firstname => this.setState({ firstname })}
-          value={this.state.firstname}
-          placeholder={"First Name"}
-          placeholderTextColor="black"
-          autoFocus={true}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={lastname => this.setState({ lastname })}
-          value={this.state.lastname}
-          placeholder={"Last Name"}
+          onChangeText={name => this.setState({ name })}
+          value={this.state.name}
+          placeholder={"Organization name"}
           placeholderTextColor="black"
           autoFocus={true}
         />
