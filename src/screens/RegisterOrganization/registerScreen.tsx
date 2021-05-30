@@ -8,17 +8,20 @@ import {
 } from 'react-native';
 import {height_screen, width_screen} from 'ultis/dimensions';
 import AnimatedMultistep from "react-native-animated-multistep";
-
+import { useNavigation } from '@react-navigation/native';
+import ROUTES from 'ultis/routes';
 
 /* Define the steps  */
  
 import Step1 from "./Components/Steps/step1";
-import Step2 from "./Components/Steps/step3";
-import Step3 from "./Components/Steps/step2";
-import Step4 from "./Components/Steps/step6";
+import Step2 from "./Components/Steps/step2";
+import Step3 from "./Components/Steps/step3";
+import Step4 from "./Components/Steps/step4";
 import Step5 from "./Components/Steps/step5";
-import Step6 from "./Components/Steps/step4";
+import Step6 from "./Components/Steps/step6";
 import Step7 from "./Components/Steps/step7";
+import axios from 'axios';
+
 
  
 const allSteps = [
@@ -46,8 +49,15 @@ const registerScreen = memo(() => {
  
   /* define the method to be called when the wizard is finished */
  
-  const finish = finalState => {
-    console.log(finalState);
+  const finish = async (finalState) => {
+      try {
+        console.log(finalState)
+        const response = await axios.post('https://dont-be-quiet.herokuapp.com/organization/signup',{email:finalState.email,password:finalState.password,username:finalState.name,logo:'uploads/logo/2021-05-29T11-30-37.749Zlogobreed.png'}).then(async function (response){
+        console.log(response.data)
+        })
+      } catch (error) {
+        console.log(error.message)
+      }
     
   };
   
@@ -82,10 +92,10 @@ const registerScreen = memo(() => {
           onFinish={finish}
           onBack={onBack}
           onNext={onNext}
-          comeInOnNext="bounceInLeft"
-          OutOnNext="bounceOutRight"
-          comeInOnBack="bounceInRight"
-          OutOnBack="bounceOutLeft"
+          comeInOnNext="bounceInRight"
+          OutOnNext="bounceOutLeft"
+          comeInOnBack="bounceInLeft"
+          OutOnBack="bounceOutRight"
         />
       </View>
         </View>

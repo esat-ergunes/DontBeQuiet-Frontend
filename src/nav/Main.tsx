@@ -15,7 +15,7 @@ import EventDetailMap from 'screens/EventDetailMap'
 import Routes from 'screens/Routes'
 import EventDetail from 'screens/EventDetail'
 import Attending from 'screens/Attending';
-
+import RegisterOrganization from 'screens/RegisterOrganization/registerScreen'
 import ForYou from 'screens/ForYou'
 import { Icon } from 'expo';
 
@@ -71,6 +71,11 @@ const Main = memo(() => {
                     name={ROUTES.Register}
                     component={Register}
                     options={{headerBackTitleVisible: false,title:'',headerTransparent:true, headerLeft: ()=> null}}
+                />
+                <Stack.Screen
+                    name={ROUTES.RegisterOrganization}
+                    component={RegisterOrganization}
+                    options={{headerShown: false}}
                 />
                 <Stack.Screen
                     name={ROUTES.Login}
