@@ -17,6 +17,7 @@ import ROUTES from 'ultis/routes';
 import { Video, AVPlaybackStatus } from "expo-av";
 
 const startScreen = memo(() => {
+  
   const video = React.useRef(null);
   const scrollX = useRef(new Animated.Value(0)).current;
   const {navigate} = useNavigation();

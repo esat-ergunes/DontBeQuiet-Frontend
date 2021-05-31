@@ -17,7 +17,6 @@ const TabAddEvents = memo(() => {
         },
       }}>
       <Tab.Screen name={ROUTES.Add_Event} component={Add_Event} />
-      <Tab.Screen name={ROUTES.Add_Post} component={Add_Post} />
     </Tab.Navigator>
   );
 });

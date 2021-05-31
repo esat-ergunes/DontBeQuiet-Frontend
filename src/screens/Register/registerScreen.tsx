@@ -38,7 +38,8 @@ const allSteps = [
 
 
 
-const registerScreen = memo(() => {
+const registerScreen = memo((props) => {
+ 
   const {navigate} = useNavigation();
   const {state,signup} = useContext(AuthContext);
   const onNext = () => {
@@ -50,6 +51,7 @@ const registerScreen = memo(() => {
     console.log("Back");
   };
 
+ 
   /* define the method to be called when the wizard is finished */
  /*
  const finish = async(finalState) => {

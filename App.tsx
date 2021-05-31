@@ -13,6 +13,7 @@ import Main from 'nav/Main';
 import { Provider as AuthProvider }  from './src/context/AuthContext'
 
 const App = () => {
+
     let [fontsLoaded] = useFonts({
         'DINCondensed-Bold': require('./assets/fonts/DINCondensed-Bold.ttf'),
         'Montserrat-Black': require('./assets/fonts/Montserrat-Black.ttf'),

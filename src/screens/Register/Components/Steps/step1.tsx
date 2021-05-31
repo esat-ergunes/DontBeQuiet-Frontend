@@ -41,8 +41,17 @@ class step1 extends Component {
   TermsOfService(){
     console.log('Terms Of Service');
   }
+
+
+GoBack(){
+  console.log(this.props);
+}
+  
  
-  render() {
+render() {
+ 
+     
+  
     const { currentStep, totalSteps } = this.state;
     return (
       <View style={[styles.container, styles.step1]}>
@@ -62,6 +71,7 @@ class step1 extends Component {
           autoCapitalize="none"
           autoCorrect={false}
         />
+        
         <TextInput
           style={styles.input}
           onChangeText={lastname => this.setState({ lastname })}
@@ -85,7 +95,7 @@ class step1 extends Component {
           </TouchableOpacity>
         </View>
         <View style={{marginTop:20}}>
-          <TouchableOpacity >
+          <TouchableOpacity onPress={() =>console.log()} >
             <Text style={{color:"black", textAlign:"center"}}>I'm an organization</Text>
           </TouchableOpacity>
         </View>
