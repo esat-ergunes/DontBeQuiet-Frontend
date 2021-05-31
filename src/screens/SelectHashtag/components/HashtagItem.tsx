@@ -9,17 +9,21 @@ interface Props {
   source: any;
   title: string;
   des: string;
+  id: string;
 }
 
 const HashtagItem = memo((props: Props) => {
   const [choose, setChoose] = useState<boolean>();
-  
-  const {source, title, des} = props;
+
+
+
+
+  const {source, title, des,id} = props;
   const onChosse = useCallback(() => {
-    setChoose(!choose);
+    setChoose(!choose); 
   }, [choose]);
 
-//console.log(source);
+
 
 
   return (
@@ -31,7 +35,7 @@ const HashtagItem = memo((props: Props) => {
       <Text style={[styles.title, {color: choose ? '#353B48' : '#353B48'}]}>
         {title}
       </Text>
-      <Text style={styles.des}>{des}</Text>
+      <Text style={styles.des}>{id}</Text>
       {choose && (
         <LinearGradient
           style={styles.block}

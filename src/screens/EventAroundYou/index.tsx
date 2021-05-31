@@ -1,4 +1,4 @@
-import React, {memo, useCallback} from 'react';
+import React, {memo, useCallback, useState} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -17,10 +17,13 @@ import ButtonFilter from 'components/buttons/ButtonFilter';
 
 import {width_screen} from 'ultis/dimensions';
 import {getBottomSpace} from 'react-native-iphone-x-helper';
+import jwtDecode from 'jwt-decode';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 const EventAroundYou = memo(() => {
   
+
   const navigation = useNavigation();
   const onPressFilter = useCallback(() => {
     navigation.navigate(ROUTES.Filter);
@@ -34,20 +37,12 @@ const EventAroundYou = memo(() => {
   "A generation of young activists eager to set the agenda on global warming and clean energy should seek government jobs as a way to get lagging climate goals back on track, a top UN energy official said on Tuesday, February 9.We can't keep doing things from outside, Damilola Ogunbiyi, co-chair of UN Energy and chief executive of Sustainable Energy for All (SEforAll), told an online youth summit on achieving universal clean energy access. With the world falling behind on goals to bring clean, affordable energy to billions more people by 2030, changing the minds of leaders has to happen inside and outside government, said Ogunbiyi, a former Nigerian rural electrification director.",
   "The recent Black Lives Matter protests peaked on June 6, when half a million people turned out in nearly 550 places across the United States. That was a single day in more than a month of protests that still continue to today.Four recent polls — including one released this week by Civis Analytics, a data science firm that works with businesses and Democratic campaigns — suggest that about 15 million to 26 million people in the United States have participated in demonstrations over the death of George Floyd and others in recent weeks."
 ] 
-
-
-
-
-
-
-
-
   return (
+    
     <View style={styles.container}>
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}
       >
-
-        
+      
         <TouchableOpacity
           style={styles.headerForU}
           onPress={onPressAllEventAroundYou}>
@@ -57,7 +52,7 @@ const EventAroundYou = memo(() => {
           </Text>
           
         </TouchableOpacity>
-        
+       
         <EventItem
           thumbnail={require('@assets/EventAroundU/Youth.png')}
           tag={['#Climate', '#nature','#sustainability']}
@@ -72,7 +67,6 @@ const EventAroundYou = memo(() => {
           
           price={0}
         />
-        
         <EventItem
           thumbnail={require('@assets/EventAroundU/image_Y.jpg')}
           tag={['#noracismo']}
@@ -104,6 +98,13 @@ const EventAroundYou = memo(() => {
           timeCountDown={''}
           price={120}
         />
+
+
+        
+
+
+
+
       </ScrollView>
       <ButtonFilter onPress={onPressFilter} />
     </View>

@@ -52,7 +52,9 @@ export class step2 extends Component {
           rounded
           onPress={() => console.log("Works!")}
           containerStyle={{justifyContent:"center",alignSelf:"center"}}
-          source={require('../../../../assets/Followers/img.jpg')}/>
+          source={require('../../../../assets/Followers/img.jpg')}
+          
+          />
              
 
       <View style={[styles.container]}>

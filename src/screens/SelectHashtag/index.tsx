@@ -119,18 +119,21 @@ const SelectHashtag = memo(() => {
     }, []);
   const numColumn=2;
     const renderItem = useCallback(({item}) => {
-      const {source, title, des} = item;
-      return <HashtagItem source={source} title={title} des={des} />;
+      const {source, title, des,_id} = item;
+      return <HashtagItem source={source} title={title} des={des} id={_id} />;
     }, []);
 
     const [dataB,setDataB] = useState();
+    
     async function _getAllHashTags(){
        
         try {
           const response = await dontBeQuietApi.get("/interests").then(res => {
             var data = res.data.data.data[0].interests
+           
              //console.log(data)
              setDataB(data);
+             //console.log(dataB)
           })
         
         } catch (error) {
@@ -143,7 +146,7 @@ const SelectHashtag = memo(() => {
 
       
 
-      //console.log(dataB);
+      
 
 
 
