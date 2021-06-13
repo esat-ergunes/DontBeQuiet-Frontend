@@ -10,14 +10,15 @@ import Header from 'screens/PeopleProfile/components/Header';
 import SvgChatOption from '../../svgs/PeopleProfile/SvgChatOption';
 import { Text,FlatList, ScrollView, TouchableOpacity  } from 'react-native';
 import keyExtractor from '../../ultis/keyExtractor';
+import { useRoute } from '@react-navigation/native';
 
 const item = {
   coverImage: require('../../assets/Followers/BiteCover.png'),
   avatar: require('../../assets/Followers/Bite.png'),
-  userName: 'Bite Back',
+  userName: 'rerererer',
   address: 'Bredestraat 134, 3293 Diest',
-  following: '1279',
-  followers: '1279',
+  following: '0',
+  followers: '0',
   interested: ['#dieren', '#dierenrechten ', '#natuur'],
 };
 
@@ -87,10 +88,12 @@ const Item = ({ img }) => (
 
 
 const PeopleProfile = memo(() => {
+  const route = useRoute();
   const renderItem = ({ item }) => (
     <Item img={item.img} />
   );
-
+  const data = route.params?.data;
+  //console.log('fdfdfdff',data)
   const numColumns = 3;
 
   const scrollY = new Animated.Value(0);
@@ -102,7 +105,7 @@ const PeopleProfile = memo(() => {
         onPress={() => null}
         svg = {false}
         scrollY={scrollY}
-        title={item.userName}
+        title={data.name}
       />
       <Animated.ScrollView
         showsVerticalScrollIndicator={false}
@@ -117,11 +120,11 @@ const PeopleProfile = memo(() => {
         bounces={false}>
         <HeaderPeopleProfile
           coverImage={item.coverImage}
-          avatar={item.avatar}
-          userName={item.userName}
-          address={item.address}
-          followers={item.followers}
-          following={item.following}
+          avatar={data.logo}
+          userName={data.name}
+          //address={item.address}
+          followers={data.numberFollower}
+          following={data.numberFollower}
           interested={item.interested}
         />
        

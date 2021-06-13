@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useState} from 'react';
+import React, { memo, useCallback, useState } from "react";
 import {
   Dimensions,
   Image,
@@ -6,19 +6,20 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from 'react-native';
-import IconUnSave from '../../svgs/IconUnSave';
-import FONTS from '../../ultis/fonts';
-import HourGlass from '../../svgs/HourGlass';
-import {width_screen} from '../../ultis/dimensions';
-import EventName from '../../components/EventItem/EventName';
-import EventBasicInfo from '../../components/EventItem/EventBasicInfo';
-import ROUTES from '../../ultis/routes';
-import {useNavigation} from '@react-navigation/native';
-import SvgSaved from '../../svgs/IconSaved';
-import {LinearGradient} from 'expo-linear-gradient';
-import {getBottomSpace} from 'react-native-iphone-x-helper';
-
+} from "react-native";
+import IconUnSave from "../../svgs/IconUnSave";
+import FONTS from "../../ultis/fonts";
+import HourGlass from "../../svgs/HourGlass";
+import { width_screen } from "../../ultis/dimensions";
+import EventName from "../../components/EventItem/EventName";
+import EventBasicInfo from "../../components/EventItem/EventBasicInfo";
+import ROUTES from "../../ultis/routes";
+import { useNavigation } from "@react-navigation/native";
+import SvgSaved from "../../svgs/IconSaved";
+import { LinearGradient } from "expo-linear-gradient";
+import { getBottomSpace } from "react-native-iphone-x-helper";
+import { useDispatch, useSelector } from "react-redux";
+import { getAlllikeAction, likeAction, unlikeAction } from "redux/actions";
 
 interface EventItemProps {
   thumbnail: any;
@@ -39,31 +40,49 @@ interface EventItemProps {
   price?: number;
   colorAttending?: string;
   isSmallItem?: boolean;
+  id: string;
 }
 const EventItem = memo((props: EventItemProps) => {
+  const { token } = useSelector((state) => state.token);
+  const dispatch = useDispatch();
+
   const [isSave, setSave] = useState(props.save);
   const navigation = useNavigation();
 
   const onPressSave = useCallback(() => {
     setSave(!isSave);
+    _isLiked();
   }, [isSave]);
+  const _isLiked = () => {
+    if (!isSave) {
+      const cbSuccess = () => {
+        dispatch(getAlllikeAction(token));
+      };
+      dispatch(likeAction(props.id, token, cbSuccess));
+    } else {
+      const cbSuccess = () => {
+        dispatch(getAlllikeAction(token));
+      };
+      dispatch(unlikeAction(props.id, token, cbSuccess));
+    }
+  };
   const thumbnailDimension = {
-    width: props.isSmallItem ? '100%' : (327 / 375) * widthScreen,
+    width: props.isSmallItem ? "100%" : (327 / 375) * widthScreen,
     height: props.isSmallItem ? 220 * (375 / 327) * 0.7 : 220 * (375 / 327),
   };
   const countDownDimension = {
-    width: props.isSmallItem ? '100%' : (327 / 375) * widthScreen,
+    width: props.isSmallItem ? "100%" : (327 / 375) * widthScreen,
     height: props.isSmallItem ? 34 * (375 / 327) * 0.7 : 34 * (375 / 327),
   };
 
   const data = {
     thumbnail: props.thumbnail,
     tag: props.tag,
-    description:props.description,
+    description: props.description,
     reviewTimes: props.reviewTimes,
     eventName: props.eventName,
     location: props.location,
-    timeCountDown: props.timeCountDown || '',
+    timeCountDown: props.timeCountDown || "",
     distance: props.distance,
     currentAttending: props.currentAttending,
     maxAttending: props.maxAttending,
@@ -73,8 +92,10 @@ const EventItem = memo((props: EventItemProps) => {
   };
 
   const onDetail = useCallback(() => {
+    console.log("props in on Detail", props);
+
     navigation.navigate(ROUTES.EventDetail, {
-      data: data,
+      data: props,
     });
   }, []);
 
@@ -88,22 +109,21 @@ const EventItem = memo((props: EventItemProps) => {
         },
       ]}
       onPress={onDetail}
-      activeOpacity={0.8}>
+      activeOpacity={0.8}
+    >
       <View style={styles.viewThumbnail}>
         <Image
           source={props.thumbnail}
           style={[styles.thumbnail, thumbnailDimension]}
         />
-        
+
         <TouchableOpacity style={styles.iconUnSave} onPress={onPressSave}>
           {isSave ? <SvgSaved /> : <IconUnSave />}
         </TouchableOpacity>
         {props.timeCountDown ? (
           <View style={[styles.labelCountDown, countDownDimension]}>
             <HourGlass />
-            <Text style={styles.textCountDown}>
-              {props.timeCountDown}
-            </Text>
+            <Text style={styles.textCountDown}>{props.timeCountDown}</Text>
           </View>
         ) : null}
       </View>
@@ -127,71 +147,71 @@ const EventItem = memo((props: EventItemProps) => {
 });
 
 export default EventItem;
-const widthScreen = Dimensions.get('window').width;
+const widthScreen = Dimensions.get("window").width;
 const styles = StyleSheet.create({
   itemContainer: {
     marginBottom: 36,
   },
   textReviewTimes: {
     fontSize: 14,
-    color: '#353B48',
+    color: "#353B48",
     marginLeft: 8,
     fontFamily: FONTS.Regular,
   },
   rateView: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   textTag: {
     fontSize: 14,
-    color: '#7F8FA6',
+    color: "#7F8FA6",
     marginRight: 8,
     fontFamily: FONTS.Regular,
   },
   tagRateView: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 16,
-    justifyContent: 'space-between',
-    width: '100%',
+    justifyContent: "space-between",
+    width: "100%",
   },
   viewThumbnail: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   thumbnail: {
-    justifyContent: 'flex-end',
-    flexDirection: 'row',
+    justifyContent: "flex-end",
+    flexDirection: "row",
     borderRadius: 10,
   },
   iconUnSave: {
-    position: 'absolute',
+    position: "absolute",
     right: 18,
     top: 18,
   },
   textEventName: {
     fontSize: 18,
-    fontWeight: '500',
+    fontWeight: "500",
     lineHeight: 27,
     marginTop: 12,
     fontFamily: FONTS.Medium,
   },
   location: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 8,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   textLocation: {
     marginLeft: 8,
     fontSize: 14,
-    color: '#7F8FA6',
+    color: "#7F8FA6",
     fontFamily: FONTS.Regular,
   },
   flexRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   viewAttending: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   avatar: {
     width: 18,
@@ -199,16 +219,16 @@ const styles = StyleSheet.create({
     marginLeft: -8,
     borderRadius: 9,
     borderWidth: 2,
-    borderColor: '#F2F2F2',
+    borderColor: "#F2F2F2",
   },
   labelCountDown: {
-    flexDirection: 'row',
-    position: 'absolute',
+    flexDirection: "row",
+    position: "absolute",
     bottom: 0,
     height: 34 * (375 / 327),
     width: (327 / 375) * widthScreen,
-    alignItems: 'center',
-    backgroundColor: '#1DA1F2',
+    alignItems: "center",
+    backgroundColor: "#1DA1F2",
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     paddingHorizontal: 16,
@@ -216,7 +236,7 @@ const styles = StyleSheet.create({
   textCountDown: {
     fontSize: 12,
     fontFamily: FONTS.Regular,
-    color: '#fff',
+    color: "#fff",
     marginLeft: 8,
   },
 });

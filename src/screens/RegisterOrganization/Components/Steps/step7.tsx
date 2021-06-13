@@ -1,29 +1,34 @@
 import React, { Component } from "react";
-import { Image, View, TouchableOpacity, TextInput, Text,StyleSheet,ImageBackground } from "react-native";
-import CustomDatePicker from '../datePicker'
-import { Ionicons } from '@expo/vector-icons';
-
+import {
+  Image,
+  View,
+  TouchableOpacity,
+  TextInput,
+  Text,
+  StyleSheet,
+} from "react-native";
+import CustomDatePicker from "../../Components/datePicker";
+import { Ionicons } from "@expo/vector-icons";
 export class step7 extends Component {
   constructor(props) {
     super(props);
     this.state = {
       totalSteps: "",
-      currentStep: ""
+      currentStep: "",
     };
-    
   }
-  static getDerivedStateFromProps = props => {
-    const { getTotalSteps, getCurrentStep , tests } = props;
+  static getDerivedStateFromProps = (props) => {
+    const { getTotalSteps, getCurrentStep, tests } = props;
     return {
       totalSteps: getTotalSteps(),
-      currentStep: getCurrentStep()
+      currentStep: getCurrentStep(),
     };
   };
 
   nextStep = () => {
     const { next, saveState } = this.props;
-    
-    
+    saveState({ username: this.state.username });
+
     next();
   };
 
@@ -31,70 +36,73 @@ export class step7 extends Component {
     const { currentStep, totalSteps } = this.state;
     return (
       <>
-      <ImageBackground source={require('../../assets/FinishScreen.png')} style={styles.image}>
-          <View style={{display:"flex", flexDirection:"row",alignItems:"center"}}>
-          
-    
-          <TouchableOpacity onPress={this.props.back} style={{zIndex:300}}>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <TouchableOpacity onPress={this.props.back} style={{ zIndex: 300 }}>
             <Ionicons name="ios-chevron-back-outline" size={34} color="black" />
           </TouchableOpacity>
-         
-          
         </View>
-       
-         
+        <View style={{ marginVertical: 30 }}>
+          <Text
+            style={{ textAlign: "center", fontSize: 24, marginHorizontal: 5 }}
+          >{`Your username `}</Text>
+        </View>
 
-      <View style={styles.container}>
-       
-      
-      
-        <View style={{flex:1,alignItems:'center',justifyContent:"flex-start"}}>
-        <Text style={{fontSize:35}}>congratulations</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(username) => this.setState({ username })}
+          value={this.state.username}
+          placeholder={"Username"}
+          placeholderTextColor="black"
+          autoFocus={true}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+
+        <View style={[styles.container]}>
+          <View style={styles.btnContainer}>
+            <TouchableOpacity
+              onPress={this.nextStep}
+              style={{
+                backgroundColor: "#1D1D1B",
+                paddingHorizontal: 100,
+                paddingVertical: 10,
+                borderRadius: 100,
+              }}
+            >
+              <Text
+                style={{ color: "#70B62E", textAlign: "center", fontSize: 19 }}
+              >
+                Continue
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={{flex:1,alignItems:'center',justifyContent:"flex-end"}}>
-        <Text style={{fontSize:20, textAlign:"center"}}>Your account has been created successfully</Text>
-        </View>
-        
-        <View style={[styles.btnContainer, styles.marginAround]}>
-          <TouchableOpacity onPress={this.nextStep} style={{backgroundColor:"#1D1D1B",paddingHorizontal:100,paddingVertical:10,borderRadius:100}} 
-          
-          >
-            <Text style={{color:"#70B62E",textAlign:"center",fontSize:19}}>Let's start</Text>
-          </TouchableOpacity>
-        </View>
-       
-      </View>
-      </ImageBackground>
       </>
     );
   }
 }
 const styles = StyleSheet.create({
-  container: {
-          flex: 1,
-          justifyContent: 'flex-end',
-          flexDirection: "column"
-          
-        },
-        input: {
-              height: 30,
-          borderBottomColor:"gray",
-          borderBottomWidth:1,
-          marginVertical:10
-         
-        },
-      btnContainer:{
-          display:"flex",
-          flexDirection:"row",
-          justifyContent:"space-around"
-      },image: {
-          flex: 1,
-          resizeMode: "cover",
-          justifyContent: "center",
-        },
-        marginAround:{
-            marginVertical:34
-        }
-     
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    flexDirection: "column",
+  },
+  input: {
+    height: 30,
+    borderBottomColor: "gray",
+    borderBottomWidth: 1,
+    marginVertical: 10,
+  },
+  btnContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
 });
 export default step7;

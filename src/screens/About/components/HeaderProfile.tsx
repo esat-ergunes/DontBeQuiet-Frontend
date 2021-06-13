@@ -57,6 +57,7 @@ const HeaderProfile = memo((props: Props) => {
     }).start();
   }, [spin]);
   const animatedStyles = {transform: [{rotate: rotateInterPolate}]};
+
   return (
     <>
       <Image style={styles.coverImage} source={props.coverImage} />
@@ -74,8 +75,8 @@ const HeaderProfile = memo((props: Props) => {
         <View style={[styles.btn]}>
          
             <Text style={styles.txtNumberFollow}>
+            <Text style={styles.txtFollow}> following :</Text>
               {props.following}
-              <Text style={styles.txtFollow}> following</Text>
             </Text>
 
         </View>
