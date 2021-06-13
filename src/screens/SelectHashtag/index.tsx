@@ -1,22 +1,25 @@
-import React, {memo, useCallback,useState} from 'react';
-import {FlatList, SafeAreaView, StyleSheet, View,Text} from 'react-native';
-import keyExtractor from 'ultis/keyExtractor';
-import {useNavigation} from '@react-navigation/native';
-import ButtonLinear from 'components/buttons/ButtonLinear';
-import {getBottomSpace} from 'react-native-iphone-x-helper';
-import {width_screen} from 'ultis/dimensions';
-import ROUTES from 'ultis/routes';
-import HashtagItem from '../../screens/SelectHashtag/components/HashtagItem';
-import AsyncStorage from '@react-native-community/async-storage';
-import dontBeQuietApi from '../../api/dontBequiet'
-import { ScrollView } from 'react-native-gesture-handler';
-
-
-
-
-
-
-
+import React, { memo, useCallback, useEffect, useState } from "react";
+import {
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  View,
+  Text,
+  ActivityIndicator,
+} from "react-native";
+import keyExtractor from "ultis/keyExtractor";
+import { useNavigation } from "@react-navigation/native";
+import ButtonLinear from "components/buttons/ButtonLinear";
+import { getBottomSpace } from "react-native-iphone-x-helper";
+import { width_screen } from "ultis/dimensions";
+import ROUTES from "ultis/routes";
+import HashtagItem from "../../screens/SelectHashtag/components/HashtagItem";
+import AsyncStorage from "@react-native-community/async-storage";
+import dontBeQuietApi from "../../api/dontBequiet";
+import { ScrollView } from "react-native-gesture-handler";
+//redux imports
+import { useDispatch, useSelector } from "react-redux";
+import { interestRequest } from "redux/actions";
 
 /*const data = [
     {
@@ -106,104 +109,113 @@ import { ScrollView } from 'react-native-gesture-handler';
     },
   ];*/
 
-
 const SelectHashtag = memo(() => {
-   
-    
-    const {navigate} = useNavigation();
-    const onMaintab = useCallback(() => {
-      // Display an interstitial
-  
-        navigate(ROUTES.MainBottomTab);
-  
-    }, []);
-  const numColumn=2;
-    const renderItem = useCallback(({item}) => {
-      const {source, title, des,_id} = item;
-      return <HashtagItem source={source} title={title} des={des} id={_id} />;
-    }, []);
+  const { navigate } = useNavigation();
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  //get array from reducer
+  const { interest_array } = useSelector((state) => state.interests);
 
-    const [dataB,setDataB] = useState();
-    
-    async function _getAllHashTags(){
-       
-        try {
-          const response = await dontBeQuietApi.get("/interests").then(res => {
-            var data = res.data.data.data[0].interests
-           
-             //console.log(data)
-             setDataB(data);
-             //console.log(dataB)
-          })
-        
-        } catch (error) {
-          console.log(error.message)
-        }
-    
-      }
+  const onMaintab = useCallback(() => {
+    // Display an interstitial
 
-      _getAllHashTags();
+    navigate(ROUTES.MainBottomTab);
+  }, []);
+  useEffect(() => {
+    _getAllHashTags();
+  }, []);
+  const numColumn = 2;
+  const renderItem = useCallback(({ item, index }) => {
+    // let n = Object.assign([], item);
+    // console.log("n", n);
 
-      
-
-      
-
-
-
-
-
-
+    const { source, title, des, _id, active } = item;
     return (
-      
-      <View style={styles.container}>
-
-          
-
-          <ScrollView 
-          showsVerticalScrollIndicator={false}
-           
-            contentContainerStyle={{marginHorizontal:10}}
-          >
-        <FlatList
-          data={dataB}
-          renderItem={renderItem}
-          keyExtractor={keyExtractor}
-          showsVerticalScrollIndicator={false}
-          numColumns={numColumn}
-          style={styles.list}
-        />
-        </ScrollView>
-        
-      </View>
-      
+      <HashtagItem
+        source={source}
+        title={title}
+        des={des}
+        id={_id}
+        active={active}
+      />
     );
-  });
-  
-  export default SelectHashtag;
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    contentContainerStyle: {
-      flexDirection: 'row',
-      flexWrap:"wrap",
-      justifyContent: 'space-between',
-     
-    },
-    list: {
-      paddingTop: 24,
-      marginBottom:60,
-     
-     
-    },
-  
-    btnNext: {
-      position: 'absolute',
-      bottom: getBottomSpace() + 8,
-      width: width_screen - 48,
-      height: 50,
-      alignSelf: 'center',
-      borderRadius: 100,
-    },
-  });
-  
+  }, []);
+  const [dataB, setDataB] = useState();
+
+  async function _getAllHashTags() {
+    try {
+      const response = await dontBeQuietApi.get("/interests").then((res) => {
+        var data = res.data.data.data[0].interests;
+        // console.log("data", data);
+        setDataB(data);
+        setLoading(false);
+        // add active key in array for logic purposes
+        let a = Object.assign([], data);
+        a.map((o) => (o.active = false));
+        dispatch(interestRequest(a));
+        // console.log("dataB", dataB);
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  return (
+    <View style={styles.container}>
+      {loading === true ? (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <ActivityIndicator size="large" color="#6BB981" />
+        </View>
+      ) : interest_array !== [] && interest_array !== undefined ? (
+        <>
+          {console.log("here in if")}
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ marginHorizontal: 10 }}
+          >
+            <FlatList
+              data={interest_array}
+              renderItem={renderItem}
+              keyExtractor={keyExtractor}
+              showsVerticalScrollIndicator={false}
+              numColumns={numColumn}
+              style={styles.list}
+            />
+          </ScrollView>
+        </>
+      ) : (
+        <>
+          {console.log("here in else")}
+          <Text>No items</Text>
+        </>
+      )}
+    </View>
+  );
+});
+
+export default SelectHashtag;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  contentContainerStyle: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  },
+  list: {
+    paddingTop: 24,
+    marginBottom: 60,
+  },
+
+  btnNext: {
+    position: "absolute",
+    bottom: getBottomSpace() + 8,
+    width: width_screen - 48,
+    height: 50,
+    alignSelf: "center",
+    borderRadius: 100,
+  },
+});

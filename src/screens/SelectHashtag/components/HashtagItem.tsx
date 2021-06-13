@@ -1,50 +1,58 @@
-import React, {memo, useCallback, useState} from 'react';
-import {width_screen} from 'ultis/dimensions';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import FONTS from 'ultis/fonts';
-import {LinearGradient} from 'expo-linear-gradient';
-import SvgCheck from 'svgs/SvgCheck';
+import React, { memo, useCallback, useEffect, useState } from "react";
+import { width_screen } from "ultis/dimensions";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import FONTS from "ultis/fonts";
+import { LinearGradient } from "expo-linear-gradient";
+import SvgCheck from "svgs/SvgCheck";
+//redux imports
+import { useDispatch, useSelector } from "react-redux";
+import { interestRequest, unInterestRequest } from "redux/actions";
 
 interface Props {
   source: any;
   title: string;
   des: string;
   id: string;
+  active: boolean;
 }
 
 const HashtagItem = memo((props: Props) => {
-  const [choose, setChoose] = useState<boolean>();
+  const { source, title, des, id, active } = props;
+  //get array from reducer
+  const { interest_array, selected_array } = useSelector(
+    (state) => state.interests
+  );
+  const dispatch = useDispatch();
 
-
-
-
-  const {source, title, des,id} = props;
-  const onChosse = useCallback(() => {
-    setChoose(!choose); 
-  }, [choose]);
-
-
-
-
+  const onChosse = () => {
+    let a = interest_array;
+    const itemFindIndex = a.findIndex((x) => x._id === id);
+    if (a[itemFindIndex].active === false) {
+      dispatch(interestRequest(props));
+    } else {
+      dispatch(unInterestRequest(props));
+    }
+  };
   return (
     <TouchableOpacity
       style={styles.container}
       activeOpacity={0.75}
-      onPress={onChosse}>
-      <Image source={require('../../../assets/SelectHashtag/1.png')} style={styles.img} />
-      <Text style={[styles.title, {color: choose ? '#353B48' : '#353B48'}]}>
+      onPress={onChosse}
+    >
+      <Image source={{ uri: source }} style={styles.img} />
+      <Text style={[styles.title, { color: active ? "#353B48" : "#353B48" }]}>
         {title}
       </Text>
       <Text style={styles.des}>{id}</Text>
-      {choose && (
+      {active && (
         <LinearGradient
           style={styles.block}
-          colors={['#64c141', '#64c141']}
-          start={{x: 0, y: 1}}
-          end={{x: 1, y: 1}}
+          colors={["#64c141", "#64c141"]}
+          start={{ x: 0, y: 1 }}
+          end={{ x: 1, y: 1 }}
         />
       )}
-      {choose && (
+      {active && (
         <View style={styles.containerCheck}>
           <SvgCheck />
         </View>
@@ -59,7 +67,7 @@ const styles = StyleSheet.create({
   container: {
     width: (width_screen - 72) / 2,
     borderRadius: 10,
-    overflow: 'hidden',
+    overflow: "hidden",
     marginBottom: 32,
   },
   img: {
@@ -68,13 +76,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   title: {
-    color: '#353B48',
+    color: "#353B48",
     fontSize: 16,
     fontFamily: FONTS.Medium,
     marginTop: 16,
   },
   des: {
-    color: '#7F8FA6',
+    color: "#7F8FA6",
     fontSize: 12,
     fontFamily: FONTS.Regular,
   },
@@ -82,15 +90,15 @@ const styles = StyleSheet.create({
     width: (width_screen - 150) / 2,
     height: (width_screen - 150) * 0.67,
     borderRadius: 10,
-    position: 'absolute',
+    position: "absolute",
     opacity: 0.6,
   },
   containerCheck: {
     width: (width_screen - 150) / 2,
     height: (width_screen - 150) * 0.67,
     borderRadius: 10,
-    position: 'absolute',
-    justifyContent: 'center',
-    alignItems: 'center',
+    position: "absolute",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

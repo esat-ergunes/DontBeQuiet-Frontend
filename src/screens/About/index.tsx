@@ -6,18 +6,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 import dontBeQuietApi from "../../api/dontBequiet";
 import getUserlocation from '../../api/getUserlocation';
 
-const item = {
-  coverImage: require('assets/Profile/CoverImage.png'),
-  avatar: require('assets/Profile/Avatar.png'),
-  userName: 'Hieu Le',
-  address: 'Brussel, BE',
-  followers: '1.5M',
-  following: 3,
-  numberMessage: 2,
-  reward: 15,
-  interested: ['#noracismo', ' #Climate', ' #nature',' #sustainability'],
-  notification: 1,
-};
 
 
 
@@ -44,7 +32,8 @@ const About = memo(() => {
       
       const response = await dontBeQuietApi.get("/activist/"+userId,{headers:{Authorization:AuthStr}})
       setUsername(response.data.data.data.username);
-      setFollowing(response.data.data.data.following);
+      setFollowing(response.data.data.data.following.length);
+     
       setInterests(response.data.data.data.interests);
       setUserLat(response.data.data.data.latitude);
       setUserLong(response.data.data.data.longitude);
@@ -57,7 +46,8 @@ const About = memo(() => {
     }else if(decodeData.default == true){
       const response = await dontBeQuietApi.get("/organization/"+userId,{headers:{Authorization:AuthStr}})
       setUsername(response.data.data.data.username);
-      setFollowing(response.data.data.data.following);
+      setFollowing(response.data.data.data.following.length);
+      
       setInterests(response.data.data.data.interests);
       setUserLat(response.data.data.data.latitude);
       setUserLong(response.data.data.data.longitude);
@@ -79,7 +69,19 @@ const About = memo(() => {
 
   }
   _getUserData();
-
+  const item = {
+    coverImage: require('assets/Profile/CoverImage.png'),
+    avatar: require('assets/Profile/Avatar.png'),
+    userName: "dsqdqsdqsds",
+    address: 'Brussel, BE',
+    followers: '1.5M',
+    following: 0,
+    numberMessage: 2,
+    reward: 15,
+    interested: ['#noracismo', ' #Climate', ' #nature',' #sustainability'],
+    notification: 1,
+  };
+  
 
   return (
     <View style={styles.container}>
