@@ -7,7 +7,8 @@ export class step3 extends Component {
     super(props);
     this.state = {
       totalSteps: "",
-      currentStep: ""
+      currentStep: "",
+      messageError2:"",
     };
     
   }
@@ -21,9 +22,17 @@ export class step3 extends Component {
 
   nextStep = () => {
     const { next, saveState } = this.props;
-    saveState({ username:this.state.username});
+    if(!this.state.username){
+      const message = "Username is required"; 
+      this.setState({messageError2:message})
+    }else{
+      const message = ""; 
+      this.setState({messageError2:message})
+      saveState({ username:this.state.username});
     
-    next();
+      next();
+    }
+    
   };
 
   render() {
@@ -68,7 +77,7 @@ export class step3 extends Component {
             <Text style={{color:"#70B62E",textAlign:"center",fontSize:19}}>Continue</Text>
           </TouchableOpacity>
         </View>
-       
+        {!this.state.messageError2?null:<Text style={{color:"red",fontSize:16,textAlign:"center",marginTop:10}}>{this.state.messageError2}</Text>}
       </View>
       </>
     );

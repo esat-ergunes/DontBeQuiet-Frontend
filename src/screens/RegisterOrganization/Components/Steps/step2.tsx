@@ -23,6 +23,7 @@ export class step2 extends Component {
       currentStep: "",
       image: "",
       imageResponse: "",
+      messageError2:"",
     };
   }
   static getDerivedStateFromProps = (props) => {
@@ -54,21 +55,30 @@ export class step2 extends Component {
       quality: 1,
     });
 
-    console.log(result);
+    
 
     if (!result.cancelled) {
       this.setState({ image: result.uri });
       this.setState({ imageResponse: result });
     }
   };
+  
 
   nextStep = () => {
     const { next, saveState } = this.props;
-    saveState({ logo: this.state.imageResponse });
+    if(!this.state.imageResponse){
+      const message = "Organization logo is required";
+      this.setState({messageError2:message})
+      
+    }else if(this.state.imageResponse){
+      const message="";
+      this.setState({messageError2:message})
+      saveState({ logo: this.state.imageResponse });
 
-    next();
+      next();
+    }
+   
   };
-
   render() {
     const { currentStep, totalSteps } = this.state;
     return (
@@ -94,6 +104,7 @@ export class step2 extends Component {
         <Avatar
           size={140}
           rounded
+         
           onPress={() => this.pickImage()}
           avatarStyle={{}}
           containerStyle={{
@@ -112,6 +123,7 @@ export class step2 extends Component {
           }}
           source={{ uri: this.state.image }}
         />
+
         {/* // )} */}
         {/* {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />} */}
 
@@ -133,6 +145,7 @@ export class step2 extends Component {
               </Text>
             </TouchableOpacity>
           </View>
+          {!this.state.messageError2?null:<Text style={{color:"red",fontSize:16,textAlign:"center",marginTop:10}}>{this.state.messageError2}</Text>}
         </View>
       </>
     );

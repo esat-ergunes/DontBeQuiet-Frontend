@@ -43,7 +43,7 @@ const HashtagItem = memo((props: Props) => {
       <Text style={[styles.title, { color: active ? "#353B48" : "#353B48" }]}>
         {title}
       </Text>
-      <Text style={styles.des}>{id}</Text>
+      
       {active && (
         <LinearGradient
           style={styles.block}

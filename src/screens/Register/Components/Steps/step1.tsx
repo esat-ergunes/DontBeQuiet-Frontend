@@ -18,6 +18,7 @@ class step1 extends Component {
     this.state = {
       totalSteps: "",
       currentStep: "",
+      messageError2:"",
     };
   }
 
@@ -31,11 +32,27 @@ class step1 extends Component {
 
   nextStep = () => {
     const { next, saveState } = this.props;
-    // Save state for use in other steps
+   
+
+    if(!this.state.firstname || !this.state.lastname ){
+      const message = "First and last name are required";
+      this.setState({messageError2:message})
+      
+    }else if(this.state.firstname || this.state.lastname ){
+      const message="";
+      this.setState({messageError2:message})
+      // Save state for use in other steps
     saveState({ name: this.state.firstname, lastname: this.state.lastname });
 
     // Go to next step
     next();
+    }
+
+
+
+
+
+
   };
 
   goBack() {
@@ -76,7 +93,7 @@ class step1 extends Component {
           onChangeText={(firstname) => this.setState({ firstname })}
           value={this.state.firstname}
           placeholder={"First Name"}
-          placeholderTextColor="black"
+          placeholderTextColor="gray"
           autoFocus={true}
           autoCapitalize="none"
           autoCorrect={false}
@@ -87,7 +104,7 @@ class step1 extends Component {
           onChangeText={(lastname) => this.setState({ lastname })}
           value={this.state.lastname}
           placeholder={"Last Name"}
-          placeholderTextColor="black"
+          placeholderTextColor="gray"
           autoCapitalize="none"
           autoCorrect={false}
         />
@@ -129,6 +146,7 @@ class step1 extends Component {
             </Text>
           </TouchableOpacity>
         </View>
+        {!this.state.messageError2?null:<Text style={{color:"red",fontSize:16,textAlign:"center",marginTop:10}}>{this.state.messageError2}</Text>}
       </View>
     );
   }

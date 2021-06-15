@@ -25,9 +25,9 @@ import { Context as AuthContext } from "../../context/AuthContext";
 import Step1 from "./Components/Steps/step1";
 import Step2 from "./Components/Steps/step2";
 import Step3 from "./Components/Steps/step3";
-import Step4 from "./Components/Steps/step6";
+import Step4 from "./Components/Steps/step4";
 import Step5 from "./Components/Steps/step5";
-import Step6 from "./Components/Steps/step4";
+import Step6 from "./Components/Steps/step6";
 import Step7 from "./Components/Steps/step7";
 import { signupRequest } from "redux/actions";
 /*import Step4 from "./steps/step4";*/

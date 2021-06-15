@@ -93,7 +93,7 @@ const PeopleProfile = memo(() => {
     <Item img={item.img} />
   );
   const data = route.params?.data;
-  //console.log('fdfdfdff',data)
+  console.log('fdfdfdff',data)
   const numColumns = 3;
 
   const scrollY = new Animated.Value(0);
@@ -120,7 +120,7 @@ const PeopleProfile = memo(() => {
         bounces={false}>
         <HeaderPeopleProfile
           coverImage={item.coverImage}
-          avatar={data.logo}
+          avatar={data.image}
           userName={data.name}
           //address={item.address}
           followers={data.numberFollower}
