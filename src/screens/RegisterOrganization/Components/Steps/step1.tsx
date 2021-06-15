@@ -19,6 +19,7 @@ class step1 extends Component {
     this.state = {
       totalSteps: "",
       currentStep: "",
+      messageError2:"",
     };
   }
 
@@ -32,11 +33,22 @@ class step1 extends Component {
 
   nextStep = () => {
     const { next, saveState } = this.props;
-    // Save state for use in other steps
+
+    if(!this.state.organizationName){
+      const message = "Organization name is required";
+      this.setState({messageError2:message})
+      
+    }else if(this.state.organizationName){
+      const message="";
+      this.setState({messageError2:message})
+      // Save state for use in other steps
     saveState({ organizationName: this.state.organizationName });
 
     // Go to next step
     next();
+    }
+
+    
   };
 
   goBack() {
@@ -110,6 +122,7 @@ class step1 extends Component {
             </Text>
           </TouchableOpacity>
         </View>
+        {!this.state.messageError2?null:<Text style={{color:"red",fontSize:16,textAlign:"center",marginTop:10}}>{this.state.messageError2}</Text>}
         <View style={{ marginTop: 20 }}>
           <TouchableOpacity onPress={() => this.GoRegister()}>
             <Text style={{ color: "black", textAlign: "center" }}>

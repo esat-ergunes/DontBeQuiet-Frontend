@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import { Image, View, TouchableOpacity, TextInput, Text,StyleSheet } from "react-native";
 import CustomDatePicker from '../../Components/datePicker'
 import { Ionicons } from '@expo/vector-icons';
+
+
 export class step6 extends Component {
   constructor(props) {
     super(props);
     this.state = {
       totalSteps: "",
-      currentStep: ""
+      currentStep: "",
+      messageError2:""
     };
     
   }
@@ -20,10 +23,26 @@ export class step6 extends Component {
   };
 
   nextStep = () => {
-    const { next, saveState } = this.props;
+
+    if(!this.state.password){
+      const message = "Password is required"; 
+    this.setState({messageError2:message})
+    }else{
+
+
+      let regex = new RegExp("^(?=.{8,})");
+      if (regex.test(this.state.password) === false) {
+        const message = "Your password must be at least 8 characters long"; 
+        this.setState({messageError2:message})
+      }else {
+        const message = "";
+        const { next, saveState } = this.props;
     saveState({ password:this.state.password});
     
     next();
+      }
+    }
+    
   };
 
   render() {
@@ -53,8 +72,8 @@ export class step6 extends Component {
           placeholder={"password"}
           placeholderTextColor="black"
           autoFocus={true}
+          secureTextEntry={true}
         />
-
       <View style={styles.container}>
        
       
@@ -68,7 +87,7 @@ export class step6 extends Component {
             <Text style={{color:"#70B62E",textAlign:"center",fontSize:19}}>Continue</Text>
           </TouchableOpacity>
         </View>
-       
+        {!this.state.messageError2?null:<Text style={{color:"red",fontSize:16,textAlign:"center",marginTop:10}}>{this.state.messageError2}</Text>}
       </View>
       </>
     );

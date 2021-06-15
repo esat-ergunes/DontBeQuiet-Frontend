@@ -7,7 +7,8 @@ export class step2 extends Component {
     super(props);
     this.state = {
       totalSteps: "",
-      currentStep: ""
+      currentStep: "",
+      messageError2:"",
     };
     
   }
@@ -21,9 +22,24 @@ export class step2 extends Component {
 
   nextStep = () => {
     const { next, saveState } = this.props;
-    saveState({ birthday:"00-00-0000" });
-  
+
+    if(!this.state.birthday){
+      const message = "Birthday is required";
+      this.setState({messageError2:message})
+    }else{
+      let dateReg = /^\d{2}([./-])\d{2}\1\d{4}$/
+      if (dateReg.test(this.state.birthday) === false) {
+        const message = "Birthday is not valid"; 
+        this.setState({messageError2:message})
+      }else{
+        const message = ""; 
+        this.setState({messageError2:message})
+     saveState({ birthday:this.state.birthday});
+
     next();
+      }
+    }
+    
   };
   
  
@@ -49,11 +65,11 @@ export class step2 extends Component {
                                 style={styles.input}
                                 onChangeText={birthday => this.setState({ birthday })}
                                 value={this.state.birthday}
-                                placeholder={"birthday"}
-                                placeholderTextColor="#fff"
+                                placeholder={"DD-MM-YYYY"}
+                                placeholderTextColor="gray"
                                 autoCapitalize="none"
                                 autoCorrect={false}
-                                autoFocus={true}
+                                
                                 
                                 
                             />
@@ -64,7 +80,7 @@ export class step2 extends Component {
             <Text style={{color:"#70B62E",textAlign:"center",fontSize:19}}>Continue</Text>
           </TouchableOpacity>
         </View>
-        
+        {!this.state.messageError2?null:<Text style={{color:"red",fontSize:16,textAlign:"center",marginTop:10}}>{this.state.messageError2}</Text>}
       </View>
       </>
     );

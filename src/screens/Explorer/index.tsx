@@ -22,7 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllOrganizations } from "redux/actions";
 import AsyncStorage from "@react-native-community/async-storage";
 import { Context as AuthContext } from "../../context/AuthContext";
-
+import { IMAGE_URL } from "services";
 interface Props {
   onPress: () => null;
 }
@@ -52,7 +52,7 @@ const Explorer = memo((props: Props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     AsyncStorage.getItem("token").then((value) => {
-      console.log("value", value);
+      //console.log("value", value);
 
       dispatch(getAllOrganizations(value));
     });
@@ -76,17 +76,20 @@ const Explorer = memo((props: Props) => {
       </>
     );
   }, [props.onPress, renderItem]);
-
+  
   const renderUserItem = useCallback(({ item }) => {
+    
     return (
       <UserItem
-        image={item.pictures}
+        image={{ uri: `${IMAGE_URL}${item.logo}` }}
         name={item.username}
         numberFollower={item.followers.length}
         token={token}
         id={item._id}
         follow={false}
+     
       />
+      
     );
   }, []);
 

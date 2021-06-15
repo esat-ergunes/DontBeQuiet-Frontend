@@ -7,7 +7,8 @@ export class step5 extends Component {
     super(props);
     this.state = {
       totalSteps: "",
-      currentStep: ""
+      currentStep: "",
+      messageError2:"",
     };
     
   }
@@ -21,9 +22,24 @@ export class step5 extends Component {
 
   nextStep = () => {
     const { next, saveState } = this.props;
-    saveState({ email:this.state.email});
-    
-    next();
+
+    if(!this.state.email){
+      const message = "Email is required"; 
+    this.setState({messageError2:message})
+    }else{
+      let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if (reg.test(this.state.email) === false) {
+        const message = "Email is not valid"; 
+        this.setState({messageError2:message})
+      }
+      else {
+        const message = "";
+        const { next, saveState } = this.props;
+        saveState({ email:this.state.email});
+        
+        next();
+      }
+    } 
   };
 
   render() {
@@ -68,7 +84,7 @@ export class step5 extends Component {
             <Text style={{color:"#70B62E",textAlign:"center",fontSize:19}}>Continue</Text>
           </TouchableOpacity>
         </View>
-       
+        {!this.state.messageError2?null:<Text style={{color:"red",fontSize:16,textAlign:"center",marginTop:10}}>{this.state.messageError2}</Text>}
       </View>
       </>
     );

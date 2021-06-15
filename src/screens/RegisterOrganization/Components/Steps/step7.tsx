@@ -15,6 +15,7 @@ export class step7 extends Component {
     this.state = {
       totalSteps: "",
       currentStep: "",
+      messageError2:""
     };
   }
   static getDerivedStateFromProps = (props) => {
@@ -26,10 +27,18 @@ export class step7 extends Component {
   };
 
   nextStep = () => {
-    const { next, saveState } = this.props;
-    saveState({ username: this.state.username });
 
-    next();
+    if(!this.state.username){
+      const message = "Username is required"; 
+    this.setState({messageError2:message})
+    }else{
+      const message = ""; 
+      this.setState({messageError2:message})
+      const { next, saveState } = this.props;
+      saveState({ username: this.state.username });
+  
+      next();
+    }
   };
 
   render() {
@@ -82,6 +91,7 @@ export class step7 extends Component {
               </Text>
             </TouchableOpacity>
           </View>
+          {!this.state.messageError2?null:<Text style={{color:"red",fontSize:16,textAlign:"center",marginTop:10}}>{this.state.messageError2}</Text>}
         </View>
       </>
     );

@@ -135,6 +135,7 @@ const registerScreen = memo(() => {
               </Text>
             ) : null}
             {!state.token ? null : navigate(ROUTES.Login)}
+            
           </View>
         </View>
       </SafeAreaView>

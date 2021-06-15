@@ -16,7 +16,7 @@ const TopHostItem = (props: Props) => {
   const onPeopleProfile = useCallback(() => {
     navigation.navigate(ROUTES.PeopleProfile);
   }, [navigation]);
-
+  //console.log('fsddsfdfsdfdffsdfsd',props);
   return (
     <TouchableOpacity onPress={onPeopleProfile} style={styles.container}>
       <Image style={styles.img} source={props.img} />

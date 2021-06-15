@@ -7,7 +7,8 @@ export class step3 extends Component {
     super(props);
     this.state = {
       totalSteps: "",
-      currentStep: ""
+      currentStep: "",
+      messageError2:"",
     };
     
   }
@@ -21,9 +22,41 @@ export class step3 extends Component {
 
   nextStep = () => {
     const { next, saveState } = this.props;
-    saveState({ vat:this.state.vat});
+    if(!this.state.vat){
+      const message = "VAT number is required";
+     
+      this.setState({messageError2:message})
+    }else{
+      if(isNaN(this.state.vat))
+      {
+        // If the Given Value is Not Number Then It Will Return True and This Part Will Execute.
+        const message = "Please enter a valid VAT number";
+        this.setState({messageError2:message})
+      }
+      else
+      {
+        if(this.state.vat.length != 10){
+          const message = "VAT number should be 10 digits";
+          this.setState({messageError2:message})
+        }else if(this.state.vat.length == 10){
+          // If the Given Value is Number Then It Will Return False and This Part Will Execute.
+       const message = "";
+       this.setState({messageError2:message})
+         saveState({ vat:this.state.vat});
+       next();
+        }
+       
+
+        
+       
+      }
+
+    }
+   
+
+
+
     
-    next();
   };
 
   render() {
@@ -69,7 +102,7 @@ export class step3 extends Component {
             <Text style={{color:"#70B62E",textAlign:"center",fontSize:19}}>Continue</Text>
           </TouchableOpacity>
         </View>
-       
+        {!this.state.messageError2?null:<Text style={{color:"red",fontSize:16,textAlign:"center",marginTop:10}}>{this.state.messageError2}</Text>}
       </View>
       </>
     );

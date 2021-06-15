@@ -29,7 +29,7 @@ export class step8 extends Component {
 
   nextStep = () => {
     const { next, saveState } = this.props;
-
+    
     next();
   };
 
